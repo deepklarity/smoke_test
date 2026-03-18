@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "taskit": {
+      "command": "taskit-mcp",
+      "env": {
+        "TASKIT_URL": "http://localhost:9101",
+        "TASKIT_AUTH_TOKEN": "",
+        "TASKIT_TASK_ID": "4",
+        "TASKIT_AUTHOR_EMAIL": "gemini+gemini-3-flash-preview@odin.agent",
+        "TASKIT_AUTHOR_LABEL": "gemini (gemini-3-flash-preview)"
+      },
+      "trust": true
+    },
+    "mobile": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ],
+      "trust": true
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--headless"
+      ],
+      "trust": true
+    }
+  }
+}
