@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "taskit": {
+      "command": "taskit-mcp",
+      "env": {
+        "TASKIT_URL": "http://localhost:9101",
+        "TASKIT_AUTH_TOKEN": "",
+        "TASKIT_TASK_ID": "9",
+        "TASKIT_AUTHOR_EMAIL": "qwen+qwen3-coder@odin.agent",
+        "TASKIT_AUTHOR_LABEL": "qwen (qwen3-coder)"
+      },
+      "trust": true
+    },
+    "mobile": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ],
+      "trust": true
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--headless"
+      ],
+      "trust": true
+    }
+  },
+  "$version": 3
+}
