@@ -1,0 +1,6 @@
+2026-03-26 22:34:07 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-26 22:34:07 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-26 22:34:07 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-26 22:34:07 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-26 22:34:19 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'content': 'I am starting the task to create a styled index.html with a heading and a 2x2 table.', 'comment_type': 'status_update', 'task_id': '110'}
+2026-03-26 22:35:46 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'content': 'I\'ve created a styled index.html at the project root with a "Claude Table Heading" and a 2x2 table.\n\n- File created: index.html\n- Styling: Modern color palette (indigo/slate), rounded corners, shadows, hover effects, and a system font stack for clean typography.\n- Build: No build scripts found; file was verified by rendering in a browser.\n- Verification: Screenshot captured and attached showing the rendered page.\n', 'comment_type': 'proof', 'file_paths': ['index.html'], 'task_id': '110', 'screenshot_paths': ['/tmp/proof_110.png']}
