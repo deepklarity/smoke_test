@@ -1,0 +1,5 @@
+2026-03-26 12:36:09 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-26 12:36:09 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-26 12:36:09 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-26 12:36:09 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-26 12:36:20 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'comment_type': 'status_update', 'content': 'Creating smoke_output/claude_table.html with a purple-themed table containing 4 columns and 3 rows of data'}
