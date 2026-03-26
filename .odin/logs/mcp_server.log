@@ -1,0 +1,5 @@
+2026-03-26 22:30:11 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-26 22:30:11 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-26 22:30:11 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-26 22:30:11 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-26 22:30:21 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'comment_type': 'status_update', 'content': 'Creating index.html with heading "claude table heading o" and a beautifully styled 2×2 table with modern CSS styling (borders, padding, colors, rounded corners, hover effects)'}
