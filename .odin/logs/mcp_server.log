@@ -1,0 +1,5 @@
+2026-03-26 15:48:54 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-26 15:48:54 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-26 15:48:54 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-26 15:48:54 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-26 15:49:03 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'content': "I am starting the task to create a styled HTML page 'smoke_output/gemini.html' with a data table and green theme.", 'task_id': '98', 'comment_type': 'status_update'}
