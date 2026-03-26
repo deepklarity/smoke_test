@@ -1,0 +1,6 @@
+2026-03-26 12:22:28 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-26 12:22:28 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-26 12:22:28 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-26 12:22:28 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-26 12:23:13 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'comment_type': 'status_update', 'content': 'Starting smoke test: Creating smoke_output/gemini.html with a styled data table and green theme.'}
+2026-03-26 12:25:21 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'content': 'Smoke test completed. Created `smoke_output/gemini.html` with a styled table and fictional data.\nVerification:\n1. File exists at `smoke_output/gemini.html`.\n2. Content includes a green-themed table with 4 columns and 3 rows of data.\n3. Visual confirmation: Screenshot captured at `/tmp/proof_45.png`.\nBuild command: Not applicable (static HTML). Manual verification of file existence and browser rendering was successful.', 'comment_type': 'proof', 'file_paths': ['smoke_output/gemini.html'], 'screenshot_paths': ['/tmp/proof_45.png']}
