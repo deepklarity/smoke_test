@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Table Task</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #f8fafc;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --hover-color: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            letter-spacing: -0.025em;
+        }
+
+        .table-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 400px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            background-color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        tr:hover td {
+            background-color: var(--hover-color);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: #dcfce7;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>claude table heading o</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Modern Design</td>
+                    <td><span class="status-badge">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>Responsive Layout</td>
+                    <td><span class="status-badge">Verified</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
