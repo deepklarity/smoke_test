@@ -1,0 +1,12 @@
+[2026-03-27 10:52:20] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/cli.py:129] - CLI initialized: config=/Users/mohammedamaan/work/smoke_test/.odin/worktrees/sp_20260327_161808_spec/119/.odin/config.yaml (local), backend=taskit
+[2026-03-27 10:52:20] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/cli.py:650] - exec: task_id=119, mock=False
+[2026-03-27 10:52:20] DEBUG [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/backends/taskit.py:445] - Task updated on TaskIt: taskit_id=119, status=executing
+[2026-03-27 10:52:21] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/orchestrator.py:2892] - [task:119] Execution started: agent=claude, model=claude-sonnet-4-5, mock=False
+[2026-03-27 10:52:21] DEBUG [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/orchestrator.py:1898] - [task:119] Generated Claude MCP config at /Users/mohammedamaan/work/smoke_test/.odin/worktrees/sp_20260327_161808_spec/119/.odin/logs/mcp_119.json
+[2026-03-27 10:52:21] DEBUG [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/backends/taskit.py:495] - Comment posted: taskit_id=119, author=odin@harness.kit, length=8042
+[2026-03-27 10:52:21] DEBUG [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/backends/taskit.py:445] - Task updated on TaskIt: taskit_id=119, status=executing
+[2026-03-27 10:53:25] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/backends/taskit.py:521] - Execution result recorded: taskit_id=119, success=True, status=REVIEW
+[2026-03-27 10:53:25] DEBUG [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/backends/taskit.py:495] - Comment posted: taskit_id=119, author=odin@harness.kit, length=44690
+[2026-03-27 10:53:25] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/orchestrator.py:3150] - [task:119] Completed: agent=claude, duration=63.5s
+[2026-03-27 10:53:26] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/cli.py:129] - CLI initialized: config=/Users/mohammedamaan/work/smoke_test/.odin/worktrees/sp_20260327_161808_spec/119/.odin/config.yaml (local), backend=taskit
+[2026-03-27 10:53:26] INFO [/Users/mohammedamaan/work/harness-kit-stable/odin/src/odin/cli.py:761] - reflect: task_id=119, report_id=71, model=claude-sonnet-4-5-20250929, agent=claude
