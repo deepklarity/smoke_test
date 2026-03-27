@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "taskit": {
+      "command": "taskit-mcp",
+      "env": {
+        "TASKIT_URL": "http://localhost:9100",
+        "TASKIT_AUTH_TOKEN": "",
+        "TASKIT_TASK_ID": "119",
+        "TASKIT_AUTHOR_EMAIL": "claude+claude-sonnet-4-5@odin.agent",
+        "TASKIT_AUTHOR_LABEL": "claude (claude-sonnet-4-5)"
+      }
+    },
+    "mobile": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--headless"
+      ]
+    }
+  }
+}
