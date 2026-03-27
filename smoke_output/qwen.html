@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Smoke Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5ff;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .table-container {
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+
+        thead {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        th {
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e0e7ff;
+            color: #374151;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #eff6ff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:hover {
+            background-color: #dbeafe;
+        }
+
+        .score {
+            font-weight: 600;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <h1>Qwen Smoke Test</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Score</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice Chen</td>
+                    <td>Frontend Developer</td>
+                    <td class="score">95</td>
+                    <td>Excellent UI/UX skills</td>
+                </tr>
+                <tr>
+                    <td>Bob Martinez</td>
+                    <td>Backend Engineer</td>
+                    <td class="score">88</td>
+                    <td>Strong API design</td>
+                </tr>
+                <tr>
+                    <td>Carol Williams</td>
+                    <td>DevOps Specialist</td>
+                    <td class="score">92</td>
+                    <td>Cloud infrastructure expert</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
