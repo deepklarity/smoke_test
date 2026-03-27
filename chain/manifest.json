@@ -1,1 +1,1 @@
-{"steps": ["step_a"], "status": "step_a_done"}
+{"steps": ["step_a", "step_b"], "status": "step_b_done"}
