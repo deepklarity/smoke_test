@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Harness Smoke Test Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .table-container {
+            margin-bottom: 60px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        .summary-section {
+            margin-top: 80px;
+            padding: 30px;
+            background: #fff;
+            border-left: 5px solid #3498db;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .summary-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .rating {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .score {
+            color: #e67e22;
+            font-size: 1.2em;
+        }
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        /* Specific overrides to prevent layout breaks */
+        .table-container table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Full Harness Smoke Test Report</h1>
+    <p>Consolidated view of agent-generated tables and styling analysis.</p>
+</header>
+
+<div class="table-container">
+    <h1>Qwen</h1>
+    <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; background-color: #e6f2ff; border: 2px solid #0066cc;">
+      <thead>
+        <tr style="background-color: #0066cc; color: white;">
+          <th style="border: 1px solid #004c99; padding: 12px; text-align: left;">Name</th>
+          <th style="border: 1px solid #004c99; padding: 12px; text-align: left;">Role</th>
+          <th style="border: 1px solid #004c99; padding: 12px; text-align: center;">Score</th>
+          <th style="border: 1px solid #004c99; padding: 12px; text-align: left;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: #f0f7ff;">
+          <td style="border: 1px solid #99ccff; padding: 10px;">Alice Chen</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Developer</td>
+          <td style="border: 1px solid #99ccff; padding: 10px; text-align: center;">95</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Excellent problem solver</td>
+        </tr>
+        <tr style="background-color: #e6f2ff;">
+          <td style="border: 1px solid #99ccff; padding: 10px;">Bob Martinez</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Designer</td>
+          <td style="border: 1px solid #99ccff; padding: 10px; text-align: center;">88</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Creative UI/UX specialist</td>
+        </tr>
+        <tr style="background-color: #f0f7ff;">
+          <td style="border: 1px solid #99ccff; padding: 10px;">Carol Williams</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Manager</td>
+          <td style="border: 1px solid #99ccff; padding: 10px; text-align: center;">92</td>
+          <td style="border: 1px solid #99ccff; padding: 10px;">Strong leadership skills</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h1 style="color: #2e7d32; font-family: sans-serif;">Agent: Gemini</h1>
+    <style>
+        .gemini-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: sans-serif;
+            margin-top: 20px;
+        }
+        .gemini-table th, .gemini-table td {
+            border: 1px solid #c8e6c9;
+            padding: 12px;
+            text-align: left;
+        }
+        .gemini-table th {
+            background-color: #4caf50;
+            color: white;
+        }
+        .gemini-table tr:nth-child(even) {
+            background-color: #e8f5e9;
+        }
+        .gemini-table tr:hover {
+            background-color: #c8e6c9;
+        }
+    </style>
+    <table class="gemini-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Score</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice Vance</td>
+                <td>Lead Engineer</td>
+                <td>95</td>
+                <td>Exceptional architectural oversight.</td>
+            </tr>
+            <tr>
+                <td>Bob Smith</td>
+                <td>System Admin</td>
+                <td>88</td>
+                <td>Reliable infrastructure management.</td>
+            </tr>
+            <tr>
+                <td>Charlie Day</td>
+                <td>QA Analyst</td>
+                <td>92</td>
+                <td>Diligent testing and bug reporting.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h1>Claude</h1>
+    <style>
+        .claude-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(107, 33, 168, 0.1);
+        }
+        .claude-table th {
+            background-color: #7c3aed;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .claude-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e9d5ff;
+        }
+        .claude-table tr:hover {
+            background-color: #faf5ff;
+        }
+        .claude-table tr:last-child td {
+            border-bottom: 2px solid #7c3aed;
+        }
+    </style>
+    <table class="claude-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Score</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice Johnson</td>
+                <td>Senior Developer</td>
+                <td>95</td>
+                <td>Excellent performance on recent projects</td>
+            </tr>
+            <tr>
+                <td>Bob Martinez</td>
+                <td>Product Manager</td>
+                <td>87</td>
+                <td>Strong leadership and communication skills</td>
+            </tr>
+            <tr>
+                <td>Carol Davis</td>
+                <td>UX Designer</td>
+                <td>92</td>
+                <td>Outstanding creativity and user-focused approach</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h1 style="color: #e65100; border-bottom: 3px solid #ff9800; padding-bottom: 10px;">MiniMax Agent</h1>
+    <table style="border-collapse: collapse; width: 100%; max-width: 600px; background-color: #ffffff; border: 2px solid #ff9800;">
+        <thead>
+            <tr style="background-color: #ff9800; color: white;">
+                <th style="padding: 12px; text-align: left; border: 1px solid #ff9800;">Name</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ff9800;">Role</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ff9800;">Score</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ff9800;">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #fff3e0;">
+                <td style="padding: 10px; border: 1px solid #ff9800;">Alice Chen</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Developer</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">95</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Excellent problem-solving skills</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Bob Martinez</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Designer</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">88</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Creative approach to UI/UX</td>
+            </tr>
+            <tr style="background-color: #fff3e0;">
+                <td style="padding: 10px; border: 1px solid #ff9800;">Carol Johnson</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Tester</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">92</td>
+                <td style="padding: 10px; border: 1px solid #ff9800;">Thorough quality assurance</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h2 style="font-family: Arial, sans-serif; color: #a40000; margin: 0 0 12px 0;">Agent: Codex</h2>
+    <table style="border-collapse: collapse; width: 100%; max-width: 760px; font-family: Arial, sans-serif; border: 2px solid #b30000; background: #fff5f5;">
+      <thead>
+        <tr style="background: #b30000; color: #ffffff;">
+          <th style="border: 1px solid #8f0000; padding: 10px; text-align: left;">Name</th>
+          <th style="border: 1px solid #8f0000; padding: 10px; text-align: left;">Role</th>
+          <th style="border: 1px solid #8f0000; padding: 10px; text-align: left;">Score</th>
+          <th style="border: 1px solid #8f0000; padding: 10px; text-align: left;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Mira Vale</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Analyst</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">92</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Consistent output under tight deadlines.</td>
+        </tr>
+        <tr style="background: #ffe3e3;">
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Theo Arden</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Engineer</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">88</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Strong debugging skills and clean handoffs.</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Lena Cross</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Designer</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">95</td>
+          <td style="border: 1px solid #d66; padding: 10px; color: #5a0000;">Clear visual direction and rapid iteration.</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <h1 style="color: #008080; font-family: Arial, sans-serif;">GLM Agent Data</h1>
+    <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+      <thead>
+        <tr style="background-color: #008080; color: white;">
+          <th style="border: 1px solid #006666; padding: 12px; text-align: left;">Name</th>
+          <th style="border: 1px solid #006666; padding: 12px; text-align: left;">Role</th>
+          <th style="border: 1px solid #006666; padding: 12px; text-align: left;">Score</th>
+          <th style="border: 1px solid #006666; padding: 12px; text-align: left;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: #e0f2f1;">
+          <td style="border: 1px solid #006666; padding: 10px;">Alice Chen</td>
+          <td style="border: 1px solid #006666; padding: 10px;">Data Analyst</td>
+          <td style="border: 1px solid #006666; padding: 10px;">95.4</td>
+          <td style="border: 1px solid #006666; padding: 10px;">Excellent performance on Q3 metrics</td>
+        </tr>
+        <tr style="background-color: #b2dfdb;">
+          <td style="border: 1px solid #006666; padding: 10px;">Bob Martinez</td>
+          <td style="border: 1px solid #006666; padding: 10px;">Project Manager</td>
+          <td style="border: 1px solid #006666; padding: 10px;">87.2</td>
+          <td style="border: 1px solid #006666; padding: 10px;">Leading team coordination</td>
+        </tr>
+        <tr style="background-color: #e0f2f1;">
+          <td style="border: 1px solid #006666; padding: 10px;">Carol Williams</td>
+          <td style="border: 1px solid #006666; padding: 10px;">UX Designer</td>
+          <td style="border: 1px solid #006666; padding: 10px;">92.8</td>
+          <td style="border: 1px solid #006666; padding: 10px;">Award-winning design work</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="summary-section">
+    <h2>CSS Quality Ratings</h2>
+    
+    <div class="summary-item">
+        <span class="rating">Claude:</span> <span class="score">9/10</span>
+        <p>Polished and modern. Features a cohesive purple color scheme, clean typography, and good use of spacing and shadows. Responsive design consideration is evident.</p>
+    </div>
+
+    <div class="summary-item">
+        <span class="rating">Gemini:</span> <span class="score">8/10</span>
+        <p>Excellent green theme with interactive hover states and alternating row colors. Very readable and professional presentation.</p>
+    </div>
+
+    <div class="summary-item">
+        <span class="rating">Qwen:</span> <span class="score">8/10</span>
+        <p>Strong blue-themed design with bold headers and consistent borders. Simple but highly effective for data visualization.</p>
+    </div>
+
+    <div class="summary-item">
+        <span class="rating">GLM:</span> <span class="score">8/10</span>
+        <p>Professional teal aesthetic with clear borders and balanced padding. The color choices provide good contrast for readability.</p>
+    </div>
+
+    <div class="summary-item">
+        <span class="rating">MiniMax:</span> <span class="score">7/10</span>
+        <p>Vibrant orange theme with a clear hierarchy. While functional and distinct, the styling is slightly more basic than the top-tier agents.</p>
+    </div>
+
+    <div class="summary-item">
+        <span class="rating">Codex:</span> <span class="score">7/10</span>
+        <p>Solid red-themed design. Effective use of background colors for rows, providing a traditional but reliable look.</p>
+    </div>
+</div>
+
+</body>
+</html>
