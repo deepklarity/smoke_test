@@ -1,0 +1,18 @@
+2026-03-27 17:39:18 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-27 17:39:18 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-27 17:39:18 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-27 17:39:26 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'content': 'Starting task: Creating smoke_output/qwen.html with a styled data table. Will create the directory, write the HTML file with blue-themed inline CSS, 4-column table with 3 data rows, and verify by opening in browser.', 'comment_type': 'status_update'}
+2026-03-27 12:09:58 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-27 12:09:58 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-27 12:09:58 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-27 12:09:58 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-27 17:40:19 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-27 17:40:19 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-27 17:40:19 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-27 17:40:19 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
+2026-03-27 17:40:26 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'comment_type': 'status_update', 'content': 'Starting task: Creating smoke_output/qwen.html with a blue-themed data table (4 columns, 3 rows of data) and inline CSS styling.'}
+2026-03-27 17:41:35 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: call_tool taskit_add_comment with {'comment_type': 'proof', 'content': 'Task completed successfully.\n\n**Files created:**\n- smoke_output/qwen.html\n\n**What was delivered:**\nCreated a self-contained HTML page with:\n- Heading "Qwen Smoke Test" styled in blue (#1e3a8a)\n- Well-structured data table with 4 columns (Name, Role, Score, Notes) and 3 rows of fictional employee data\n- Inline CSS with comprehensive blue color theme:\n  - Blue header background (#1e3a8a)\n  - Light blue alternating row shading (#eff6ff for odd rows)\n  - Light blue hover effect (#dbeafe)\n  - Blue shadow and border colors\n  - Light blue page background (#f0f8ff)\n\n**Build verification:**\n- HTML syntax validation: PASS - Well-formed HTML with no syntax errors\n\n**Visual verification:**\nThe screenshot shows the rendered page in a browser with the blue-themed table displaying all required content. The table has proper styling with blue header, alternating row colors, and all 3 rows of data are visible with the 4 specified columns.', 'file_paths': ['smoke_output/qwen.html'], 'screenshot_paths': ['/tmp/proof_41.png']}
+2026-03-27 12:11:45 INFO fastmcp.server.mixins.transport — Starting MCP server 'taskit' with transport 'stdio'
+2026-03-27 12:11:45 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_tools
+2026-03-27 12:11:45 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_prompts
+2026-03-27 12:11:45 DEBUG fastmcp.server.mixins.mcp_operations — [taskit] Handler called: list_resources
