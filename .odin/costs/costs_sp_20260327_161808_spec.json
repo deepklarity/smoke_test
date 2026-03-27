@@ -1,0 +1,15 @@
+[
+  {
+    "task_id": "119",
+    "spec_id": "sp_20260327_161808_spec",
+    "agent": "Claude Code",
+    "model": "claude-sonnet-4-5",
+    "duration_ms": 63538.6,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "estimated_cost_usd": null,
+    "success": true,
+    "recorded_at": "2026-03-27T10:53:25.324286"
+  }
+]
