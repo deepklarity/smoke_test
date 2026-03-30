@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Agent Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2);
+        }
+        thead {
+            background-color: #0056b3;
+            color: white;
+        }
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #b3d9ff;
+            color: #333;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #e6f3ff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #cce7ff;
+        }
+        tbody tr:hover {
+            background-color: #99ccff;
+            transition: background-color 0.2s ease;
+        }
+        .score {
+            font-weight: bold;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Qwen Agent - Team Members</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Score</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice Chen</td>
+                <td>Frontend Developer</td>
+                <td class="score">95</td>
+                <td>Excellent UI/UX skills</td>
+            </tr>
+            <tr>
+                <td>Bob Martinez</td>
+                <td>Backend Engineer</td>
+                <td class="score">88</td>
+                <td>Strong API design</td>
+            </tr>
+            <tr>
+                <td>Carol Johnson</td>
+                <td>DevOps Specialist</td>
+                <td class="score">92</td>
+                <td>Cloud infrastructure expert</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
