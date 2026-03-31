@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Harness Smoke Test Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+        }
+        .agent-section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .agent-section h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-left: 10px;
+            border-left: 5px solid #3498db;
+        }
+        .summary-section {
+            background-color: #f8f9fa;
+            padding: 40px;
+            margin-top: 80px;
+            border-radius: 12px;
+            border: 1px solid #dee2e6;
+        }
+        .rating-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ced4da;
+        }
+        .rating-item:last-child {
+            border-bottom: none;
+        }
+        .score {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.1em;
+        }
+        .agent-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        /* Scoped styles for Gemini */
+        #agent-gemini table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        #agent-gemini th, #agent-gemini td {
+            border: 1px solid #c8e6c9;
+            padding: 12px;
+            text-align: left;
+        }
+        #agent-gemini th {
+            background-color: #4caf50;
+            color: white;
+        }
+        #agent-gemini tr:nth-child(even) {
+            background-color: #e8f5e9;
+        }
+        #agent-gemini tr:hover {
+            background-color: #c8e6c9;
+        }
+
+        /* Scoped styles for Claude */
+        #agent-claude table {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        #agent-claude thead {
+            background-color: #663399;
+            color: white;
+        }
+        #agent-claude th {
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        #agent-claude td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e6d9f0;
+        }
+        #agent-claude tbody tr:nth-child(odd) {
+            background-color: #f3e8ff;
+        }
+        #agent-claude tbody tr:nth-child(even) {
+            background-color: #e6d9f0;
+        }
+        #agent-claude tbody tr:hover {
+            background-color: #d9c4f0;
+        }
+
+        /* Scoped styles for GLM */
+        #agent-glm table {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        #agent-glm th {
+            background-color: #008080;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #006666;
+        }
+        #agent-glm td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+        }
+        #agent-glm tr:nth-child(even) {
+            background-color: #e0f2f1;
+        }
+        #agent-glm tr:nth-child(odd) {
+            background-color: white;
+        }
+        #agent-glm tr:hover {
+            background-color: #b2dfdb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Full Harness Smoke Test Report</h1>
+
+    <div class="agent-section" id="agent-qwen">
+        <h2>Qwen Agent</h2>
+        <table style="width: 100%; max-width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+            <thead>
+                <tr style="background-color: #1e88e5;">
+                    <th style="padding: 15px; text-align: left; color: white; border: 1px solid #1565c0;">Name</th>
+                    <th style="padding: 15px; text-align: left; color: white; border: 1px solid #1565c0;">Role</th>
+                    <th style="padding: 15px; text-align: left; color: white; border: 1px solid #1565c0;">Score</th>
+                    <th style="padding: 15px; text-align: left; color: white; border: 1px solid #1565c0;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #e3f2fd;">
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Alice Chen</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Developer</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">95</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Excellent problem solver</td>
+                </tr>
+                <tr style="background-color: #ffffff;">
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Bob Martinez</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Designer</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">88</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Creative and detail-oriented</td>
+                </tr>
+                <tr style="background-color: #e3f2fd;">
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Carol Williams</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Manager</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">92</td>
+                    <td style="padding: 12px; border: 1px solid #bbdefb; color: #333;">Great team leadership</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="agent-section" id="agent-gemini">
+        <h2>Gemini Agent</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Score</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Agent Alpha</td>
+                    <td>Strategist</td>
+                    <td>95</td>
+                    <td>Excellent at identifying patterns and optimization.</td>
+                </tr>
+                <tr>
+                    <td>Agent Beta</td>
+                    <td>Builder</td>
+                    <td>88</td>
+                    <td>Strong implementation skills and attention to detail.</td>
+                </tr>
+                <tr>
+                    <td>Agent Gamma</td>
+                    <td>Validator</td>
+                    <td>92</td>
+                    <td>Thorough testing and verification specialist.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="agent-section" id="agent-claude">
+        <h2>Claude Agent</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Score</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice Johnson</td>
+                    <td>Senior Developer</td>
+                    <td>95</td>
+                    <td>Excellent problem solver</td>
+                </tr>
+                <tr>
+                    <td>Bob Smith</td>
+                    <td>UI Designer</td>
+                    <td>88</td>
+                    <td>Creative and detail-oriented</td>
+                </tr>
+                <tr>
+                    <td>Carol Lee</td>
+                    <td>Product Manager</td>
+                    <td>92</td>
+                    <td>Strong leadership skills</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="agent-section" id="agent-minimax">
+        <h2>MiniMax Agent</h2>
+        <table style="border-collapse: collapse; width: 100%; border: 2px solid #e67e22;">
+            <thead>
+                <tr style="background-color: #e67e22; color: white;">
+                    <th style="padding: 12px; text-align: left; border: 1px solid #d35400;">Name</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #d35400;">Role</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #d35400;">Score</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid #d35400;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #fdebd0;">
+                    <td style="padding: 12px; border: 1px solid #d35400;">Alice Chen</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">Frontend Developer</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">92</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">Excellent UI skills</td>
+                </tr>
+                <tr style="background-color: #f5cba7;">
+                    <td style="padding: 12px; border: 1px solid #d35400;">Bob Martinez</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">Backend Engineer</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">88</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">Strong API design</td>
+                </tr>
+                <tr style="background-color: #fdebd0;">
+                    <td style="padding: 12px; border: 1px solid #d35400;">Carol Williams</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">Data Scientist</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">95</td>
+                    <td style="padding: 12px; border: 1px solid #d35400;">ML expertise</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="agent-section" id="agent-codex">
+        <h2>Codex Agent</h2>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #d66; box-shadow: 0 2px 8px rgba(179, 0, 0, 0.15);">
+            <thead>
+              <tr style="background-color: #c40000; color: #ffffff;">
+                <th style="padding: 12px; border: 1px solid #b30000; text-align: left;">Name</th>
+                <th style="padding: 12px; border: 1px solid #b30000; text-align: left;">Role</th>
+                <th style="padding: 12px; border: 1px solid #b30000; text-align: left;">Score</th>
+                <th style="padding: 12px; border: 1px solid #b30000; text-align: left;">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background-color: #ffe5e5;">
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Rhea Nolan</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Coordinator</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">92</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Strong planning and follow-through.</td>
+              </tr>
+              <tr style="background-color: #ffd1d1;">
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Kai Mercer</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Analyst</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">88</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Clear insights with concise reports.</td>
+              </tr>
+              <tr style="background-color: #ffe5e5;">
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Mira Chen</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Developer</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">95</td>
+                <td style="padding: 10px; border: 1px solid #e79a9a;">Delivers robust features quickly.</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="agent-section" id="agent-glm">
+        <h2>GLM Agent</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Score</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alex Chen</td>
+                    <td>Developer</td>
+                    <td>95</td>
+                    <td>Excellent problem-solving skills</td>
+                </tr>
+                <tr>
+                    <td>Maria Rodriguez</td>
+                    <td>Designer</td>
+                    <td>88</td>
+                    <td>Creative UI/UX specialist</td>
+                </tr>
+                <tr>
+                    <td>James Wilson</td>
+                    <td>Project Manager</td>
+                    <td>92</td>
+                    <td>Strong leadership abilities</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="summary-section">
+        <h2>CSS Quality Summary</h2>
+        
+        <div class="rating-item">
+            <span class="agent-name">Claude:</span> <span class="score">9/10</span>
+            <p>Excellent visual hierarchy, professional color palette (purple theme), and polished details like box-shadows and hover effects. Uses a clean external style block.</p>
+        </div>
+
+        <div class="rating-item">
+            <span class="agent-name">Gemini:</span> <span class="score">8/10</span>
+            <p>Clean and highly readable design with a solid green theme. Effectively uses zebra striping and hover states via an external style block.</p>
+        </div>
+
+        <div class="rating-item">
+            <span class="agent-name">GLM:</span> <span class="score">8/10</span>
+            <p>Polished teal design with subtle shadow effects and clean borders. High quality external style block with clear hover transitions.</p>
+        </div>
+
+        <div class="rating-item">
+            <span class="agent-name">Qwen:</span> <span class="score">7/10</span>
+            <p>Solid visual result with good use of shadows and a nice blue theme, though it relies entirely on inline styling which makes maintenance harder.</p>
+        </div>
+
+        <div class="rating-item">
+            <span class="agent-name">Codex:</span> <span class="score">7/10</span>
+            <p>Bold red theme with decent shadow effects. Visually appealing, but strictly uses inline styling.</p>
+        </div>
+
+        <div class="rating-item">
+            <span class="agent-name">MiniMax:</span> <span class="score">6/10</span>
+            <p>Functional and consistent orange theme, but the styling is very basic and purely inline.</p>
+        </div>
+    </div>
+</body>
+</html>
