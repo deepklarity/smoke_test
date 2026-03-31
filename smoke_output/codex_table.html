@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Table</title>
+  <style>
+    :root {
+      --red-700: #b71c1c;
+      --red-600: #c62828;
+      --red-100: #ffcdd2;
+      --red-50: #ffebee;
+      --text: #2b0d0d;
+      --border: #ef9a9a;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fff5f5 0%, #ffeaea 100%);
+      color: var(--text);
+    }
+
+    h1 {
+      margin: 0 0 1rem 0;
+      color: var(--red-700);
+      letter-spacing: 0.4px;
+    }
+
+    .table-wrap {
+      max-width: 860px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(183, 28, 28, 0.12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: var(--red-600);
+      color: #ffffff;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    tbody td {
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: var(--red-50);
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--red-100);
+    }
+  </style>
+</head>
+<body>
+  <h1>Codex</h1>
+  <div class="table-wrap">
+    <table aria-label="Codex performance table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Avery Quinn</td>
+          <td>Analyst</td>
+          <td>91</td>
+          <td>Excellent pattern recognition and reporting clarity.</td>
+        </tr>
+        <tr>
+          <td>Rin Calder</td>
+          <td>Coordinator</td>
+          <td>87</td>
+          <td>Strong team alignment and dependable follow-through.</td>
+        </tr>
+        <tr>
+          <td>Noel Harper</td>
+          <td>Engineer</td>
+          <td>94</td>
+          <td>Delivered robust fixes with clean handoff notes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
