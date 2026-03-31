@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Harness Smoke Test Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+        .agent-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .agent-header {
+            padding: 15px 25px;
+            background: #ecf0f1;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .summary-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .summary-item {
+            margin-bottom: 20px;
+        }
+        .rating {
+            font-weight: bold;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Full Harness Smoke Test Report</h1>
+
+    <div class="agent-section">
+        <div class="agent-header">Agent: Claude</div>
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(123, 44, 191, 0.15);">
+            <thead>
+              <tr style="background-color: #7b2cbf; color: white;">
+                <th style="padding: 12px; text-align: left; border: 1px solid #9d4edd;">Name</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #9d4edd;">Role</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #9d4edd;">Score</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #9d4edd;">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background-color: #f3e5f5;">
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Alice Johnson</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Senior Developer</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">95</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Excellent performance on recent project</td>
+              </tr>
+              <tr style="background-color: #ffffff;">
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Bob Martinez</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">UX Designer</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">88</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Creative approach to user interface challenges</td>
+              </tr>
+              <tr style="background-color: #f3e5f5;">
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Carol Zhang</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Product Manager</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">92</td>
+                <td style="padding: 10px; border: 1px solid #e1bee7;">Strong leadership and communication skills</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <div class="agent-header">Agent: Codex</div>
+        <section style="font-family: Arial, sans-serif; max-width: 760px; margin: 20px auto;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid #ef9a9a; box-shadow: 0 2px 6px rgba(183, 28, 28, 0.15);">
+            <thead>
+              <tr style="background-color: #c62828; color: #ffffff;">
+                <th style="padding: 10px; text-align: left; border: 1px solid #ef9a9a;">Name</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ef9a9a;">Role</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ef9a9a;">Score</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #ef9a9a;">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background-color: #ffebee; color: #4e342e;">
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Lena Hart</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Data Scout</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">92</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Excellent pattern recognition</td>
+              </tr>
+              <tr style="background-color: #ffcdd2; color: #4e342e;">
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Marco Vale</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Systems Lead</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">88</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Reliable under pressure</td>
+              </tr>
+              <tr style="background-color: #ffebee; color: #4e342e;">
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Iris Quinn</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">UX Analyst</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">95</td>
+                <td style="padding: 10px; border: 1px solid #ef9a9a;">Clear and thoughtful annotations</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+    </div>
+
+    <div class="summary-section">
+        <h2>CSS Quality Summary</h2>
+        <div class="summary-item">
+            <strong>Claude Table Rating:</strong> <span class="rating">9/10</span>
+            <p>Claude's table uses a sophisticated purple palette with excellent contrast. The use of box-shadows and row-striping creates a modern, professional look that is easy to read.</p>
+        </div>
+        <div class="summary-item">
+            <strong>Codex Table Rating:</strong> <span class="rating">8.5/10</span>
+            <p>Codex employs a bold red theme with distinct typography. While highly structured and visually striking, the contrast of the brown text on pink backgrounds is slightly less clean than Claude's execution.</p>
+        </div>
+    </div>
+
+</body>
+</html>
