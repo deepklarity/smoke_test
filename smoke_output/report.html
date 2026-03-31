@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Harness Smoke Test Report</title>
+    <style>
+        /* Page Level Styling */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f0f2f5;
+        }
+        h1.page-title {
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .agent-section {
+            margin-bottom: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .agent-name {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #444;
+            text-transform: capitalize;
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+        }
+        .summary-section {
+            margin-top: 80px;
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .summary-section h2 {
+            margin-top: 0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .rating-item {
+            margin-bottom: 20px;
+        }
+        .rating-item strong {
+            font-size: 1.2em;
+            color: #ecf0f1;
+        }
+        .score {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        /* Scoped Agent Styles */
+        
+        /* Claude Scoped */
+        #claude-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        #claude-container table { width: 100%; border-collapse: collapse; box-shadow: 0 4px 6px rgba(107, 70, 193, 0.2); background-color: white; border-radius: 8px; overflow: hidden; }
+        #claude-container th { background-color: #7c3aed; color: white; padding: 15px; text-align: left; font-weight: 600; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
+        #claude-container td { padding: 12px 15px; border-bottom: 1px solid #e9d5ff; }
+        #claude-container tr:nth-child(odd) { background-color: #faf5ff; }
+        #claude-container tr:nth-child(even) { background-color: #f3e8ff; }
+        #claude-container tr:hover { background-color: #e9d5ff; transition: background-color 0.3s ease; }
+
+        /* Codex Scoped */
+        #codex-container { --red-700: #b71c1c; --red-600: #c62828; --red-100: #ffcdd2; --red-50: #ffebee; --text: #2b0d0d; --border: #ef9a9a; color: var(--text); }
+        #codex-container .table-wrap { width: 100%; background: #ffffff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 8px 18px rgba(183, 28, 28, 0.12); }
+        #codex-container table { width: 100%; border-collapse: collapse; }
+        #codex-container thead th { background: var(--red-600); color: #ffffff; text-align: left; padding: 0.85rem 1rem; font-size: 0.95rem; }
+        #codex-container tbody td { padding: 0.85rem 1rem; border-top: 1px solid var(--border); }
+        #codex-container tbody tr:nth-child(odd) { background: var(--red-50); }
+        #codex-container tbody tr:nth-child(even) { background: var(--red-100); }
+
+        /* Gemini Scoped */
+        #gemini-container table { width: 100%; border-collapse: collapse; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #gemini-container th, #gemini-container td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #c8e6c9; }
+        #gemini-container th { background-color: #4caf50; color: white; text-transform: uppercase; letter-spacing: 0.03em; }
+        #gemini-container tr:nth-child(even) { background-color: #e8f5e9; }
+        #gemini-container tr:hover { background-color: #c8e6c9; }
+
+        /* GLM Scoped */
+        #glm-container table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+        #glm-container th { background-color: #0d9488; color: white; padding: 15px; text-align: left; font-weight: bold; font-size: 1.1em; }
+        #glm-container td { padding: 12px 15px; border: 1px solid #ccfbf1; }
+        #glm-container tr:nth-child(even) { background-color: #ccfbf1; }
+        #glm-container tr:nth-child(odd) { background-color: #f0fdfa; }
+        #glm-container tr:hover { background-color: #99f6e4; }
+
+        /* MiniMax Scoped */
+        #minimax-container table { border-collapse: collapse; width: 100%; }
+        #minimax-container th { background-color: #ff9800; color: white; padding: 12px; text-align: left; border: 1px solid #e65100; }
+        #minimax-container td { padding: 10px; border: 1px solid #ffcc80; }
+        #minimax-container tr:nth-child(even) { background-color: #ffe0b2; }
+        #minimax-container tr:nth-child(odd) { background-color: #fff3e0; }
+        #minimax-container tr:hover { background-color: #ffcc80; }
+
+        /* Qwen Scoped */
+        #qwen-container table { width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(26, 95, 180, 0.2); }
+        #qwen-container thead { background-color: #1a5fb4; color: white; }
+        #qwen-container th, #qwen-container td { padding: 12px 15px; text-align: left; border: 1px solid #a8c5e8; }
+        #qwen-container th { font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+        #qwen-container tbody tr:nth-child(odd) { background-color: #e8f4ff; }
+        #qwen-container tbody tr:nth-child(even) { background-color: #ffffff; }
+        #qwen-container tbody tr:hover { background-color: #d0e8ff; }
+        #qwen-container .score { font-weight: bold; color: #1a5fb4; }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">Full Harness Smoke Test Report</h1>
+
+    <div class="agent-section">
+        <h2 class="agent-name">Claude</h2>
+        <div id="claude-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice Martinez</td>
+                        <td>Senior Engineer</td>
+                        <td>95</td>
+                        <td>Excellent performance on backend optimization</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Chen</td>
+                        <td>Product Designer</td>
+                        <td>88</td>
+                        <td>Creative UI solutions, strong user empathy</td>
+                    </tr>
+                    <tr>
+                        <td>Carol Thompson</td>
+                        <td>Data Analyst</td>
+                        <td>92</td>
+                        <td>Insightful metrics analysis and reporting</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <h2 class="agent-name">Codex</h2>
+        <div id="codex-container">
+            <div class="table-wrap">
+                <table aria-label="Codex performance table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Score</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Avery Quinn</td>
+                            <td>Analyst</td>
+                            <td>91</td>
+                            <td>Excellent pattern recognition and reporting clarity.</td>
+                        </tr>
+                        <tr>
+                            <td>Rin Calder</td>
+                            <td>Coordinator</td>
+                            <td>87</td>
+                            <td>Strong team alignment and dependable follow-through.</td>
+                        </tr>
+                        <tr>
+                            <td>Noel Harper</td>
+                            <td>Engineer</td>
+                            <td>94</td>
+                            <td>Delivered robust fixes with clean handoff notes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <h2 class="agent-name">Gemini</h2>
+        <div id="gemini-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice Vance</td>
+                        <td>Strategist</td>
+                        <td>98</td>
+                        <td>Expert in tactical deployment and optimization.</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Roberts</td>
+                        <td>Researcher</td>
+                        <td>92</td>
+                        <td>Consistently delivers high-quality data analysis.</td>
+                    </tr>
+                    <tr>
+                        <td>Charlie Echo</td>
+                        <td>Architect</td>
+                        <td>95</td>
+                        <td>Designed the core infrastructure for the project.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <h2 class="agent-name">GLM</h2>
+        <div id="glm-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alex Johnson</td>
+                        <td>Developer</td>
+                        <td>95</td>
+                        <td>Excellent performance on recent project</td>
+                    </tr>
+                    <tr>
+                        <td>Maria Garcia</td>
+                        <td>Designer</td>
+                        <td>88</td>
+                        <td>Creative UI solutions, needs to improve documentation</td>
+                    </tr>
+                    <tr>
+                        <td>James Wilson</td>
+                        <td>Project Manager</td>
+                        <td>92</td>
+                        <td>Strong leadership, completed milestone ahead of schedule</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <h2 class="agent-name">MiniMax</h2>
+        <div id="minimax-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice Chen</td>
+                        <td>Developer</td>
+                        <td>95</td>
+                        <td>Excellent problem-solving skills</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Martinez</td>
+                        <td>Designer</td>
+                        <td>88</td>
+                        <td>Creative vision and attention to detail</td>
+                    </tr>
+                    <tr>
+                        <td>Carol Johnson</td>
+                        <td>Lead</td>
+                        <td>92</td>
+                        <td>Strong leadership and communication</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="agent-section">
+        <h2 class="agent-name">Qwen</h2>
+        <div id="qwen-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice Chen</td>
+                        <td>Frontend Developer</td>
+                        <td class="score">95</td>
+                        <td>Excellent UI/UX skills</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Martinez</td>
+                        <td>Backend Engineer</td>
+                        <td class="score">88</td>
+                        <td>Strong API design</td>
+                    </tr>
+                    <tr>
+                        <td>Carol Johnson</td>
+                        <td>DevOps Specialist</td>
+                        <td class="score">92</td>
+                        <td>Cloud infrastructure expert</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h2>CSS Quality Summary</h2>
+        <div class="rating-item">
+            <strong>Claude: <span class="score">9/10</span></strong>
+            <p>Elegant purple theme with sophisticated shadows, excellent typography, and smooth hover transitions. Highly professional look.</p>
+        </div>
+        <div class="rating-item">
+            <strong>Codex: <span class="score">8/10</span></strong>
+            <p>Strong red visual identity. Good use of CSS variables and a polished container with deep shadows. Very cohesive.</p>
+        </div>
+        <div class="rating-item">
+            <strong>Gemini: <span class="score">7/10</span></strong>
+            <p>Clean and functional green theme. Simple but effective use of shadows and hover states for readability.</p>
+        </div>
+        <div class="rating-item">
+            <strong>GLM: <span class="score">8/10</span></strong>
+            <p>Nice teal color palette. Clean borders and good row contrast make it very legible and professional.</p>
+        </div>
+        <div class="rating-item">
+            <strong>MiniMax: <span class="score">6/10</span></strong>
+            <p>Functional orange theme. A bit basic with heavy borders, but clear and consistent with its brand.</p>
+        </div>
+        <div class="rating-item">
+            <strong>Qwen: <span class="score">8/10</span></strong>
+            <p>Solid blue theme with good box-shadows. Specific styling for the score column adds a nice touch of detail.</p>
+        </div>
+    </div>
+</body>
+</html>
