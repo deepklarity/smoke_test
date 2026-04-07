@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      --bg: #2a0000;
+      --panel: #3c0606;
+      --header: #7f1d1d;
+      --line: #fca5a5;
+      --text: #ffe4e6;
+      --muted: #fecaca;
+      --accent: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #450a0a 0%, var(--bg) 60%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(900px, 100%);
+      background: linear-gradient(180deg, #4a0b0b 0%, var(--panel) 100%);
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      color: #fecdd3;
+      text-shadow: 0 2px 8px rgba(127, 29, 29, 0.5);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead th {
+      background: var(--header);
+      color: #fff1f2;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: left;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border: 1px solid var(--line);
+      background: rgba(127, 29, 29, 0.22);
+      color: var(--muted);
+    }
+
+    tbody tr:nth-child(even) td {
+      background: rgba(220, 38, 38, 0.2);
+    }
+
+    tbody tr:hover td {
+      background: rgba(220, 38, 38, 0.32);
+      color: #fff1f2;
+    }
+
+    .score {
+      font-weight: 700;
+      color: #fecaca;
+    }
+
+    .note {
+      color: #ffe4e6;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Codex Smoke Test</h1>
+
+    <table aria-label="Codex smoke test data table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Avery Quinn</td>
+          <td>Navigator</td>
+          <td class="score">94</td>
+          <td class="note">Validated edge-case routes.</td>
+        </tr>
+        <tr>
+          <td>Jules Mercer</td>
+          <td>Analyst</td>
+          <td class="score">89</td>
+          <td class="note">Flagged two timing anomalies.</td>
+        </tr>
+        <tr>
+          <td>Rin Calder</td>
+          <td>Operator</td>
+          <td class="score">97</td>
+          <td class="note">Completed smoke cycle cleanly.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
