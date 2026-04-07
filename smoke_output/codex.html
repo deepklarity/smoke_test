@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      --bg: #fff5f5;
+      --card: #ffffff;
+      --red-1: #7f1d1d;
+      --red-2: #b91c1c;
+      --red-3: #ef4444;
+      --border: #fecaca;
+      --text: #2b0b0b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fff1f2 0%, var(--bg) 100%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .panel {
+      width: min(760px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(127, 29, 29, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 1.8rem;
+      color: var(--red-1);
+      letter-spacing: 0.2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    thead th {
+      background: var(--red-2);
+      color: #ffffff;
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+
+    tbody td {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.94rem;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fff7f7;
+    }
+
+    tbody tr:hover {
+      background: #ffe4e6;
+    }
+
+    .score {
+      font-weight: 700;
+      color: var(--red-2);
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Codex Smoke Test Data Table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lena Hart</td>
+          <td>Analyst</td>
+          <td class="score">91</td>
+          <td>Consistent performance in validation checks.</td>
+        </tr>
+        <tr>
+          <td>Omar Vale</td>
+          <td>Coordinator</td>
+          <td class="score">87</td>
+          <td>Quickly resolved test case edge conditions.</td>
+        </tr>
+        <tr>
+          <td>Priya Sloan</td>
+          <td>Engineer</td>
+          <td class="score">94</td>
+          <td>Delivered stable output with deterministic data.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
