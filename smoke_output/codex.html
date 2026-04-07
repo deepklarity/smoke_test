@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      --red-900: #7f1d1d;
+      --red-700: #b91c1c;
+      --red-600: #dc2626;
+      --red-100: #fee2e2;
+      --red-50: #fef2f2;
+      --text: #3f0a0a;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--red-50) 0%, #fff 100%);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      border: 2px solid var(--red-600);
+      border-radius: 10px;
+      padding: 1.25rem;
+      background: var(--white);
+      box-shadow: 0 10px 24px rgba(127, 29, 29, 0.15);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      color: var(--red-700);
+      border-left: 8px solid var(--red-600);
+      padding-left: 0.75rem;
+      letter-spacing: 0.3px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid var(--red-600);
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    thead th {
+      background: var(--red-700);
+      color: var(--white);
+      text-align: left;
+      padding: 0.8rem;
+      font-weight: 700;
+      border: 1px solid var(--red-900);
+    }
+
+    tbody td {
+      padding: 0.8rem;
+      border: 1px solid var(--red-600);
+      background: var(--red-50);
+    }
+
+    tbody tr:nth-child(even) td {
+      background: var(--red-100);
+    }
+
+    tbody tr:hover td {
+      background: #fecaca;
+    }
+
+    .score {
+      font-weight: 700;
+      color: var(--red-900);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Codex Smoke Test Data Table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Avery Quinn</td>
+          <td>Systems Analyst</td>
+          <td class="score">91</td>
+          <td>Consistent execution under tight deadlines.</td>
+        </tr>
+        <tr>
+          <td>Rhea Calder</td>
+          <td>UX Researcher</td>
+          <td class="score">88</td>
+          <td>Excellent synthesis of qualitative feedback.</td>
+        </tr>
+        <tr>
+          <td>Jonah Park</td>
+          <td>Platform Engineer</td>
+          <td class="score">95</td>
+          <td>Strong reliability improvements across services.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
