@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #ffe5e5 0%, #ffd2d2 100%);
+      color: #5a0000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: min(860px, 100%);
+      background: #fff3f3;
+      border: 2px solid #cc0000;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(170, 0, 0, 0.2);
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: #a10000;
+      letter-spacing: 0.4px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid #b30000;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+    thead th {
+      background: #c40000;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.6px;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border: 1px solid #d88;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(odd) {
+      background: #ffeaea;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fff7f7;
+    }
+
+    tbody tr:hover {
+      background: #ffdede;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Codex Smoke Test Data Table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aria Quill</td>
+          <td>Navigator</td>
+          <td>94</td>
+          <td>Mapped the crimson canyon route.</td>
+        </tr>
+        <tr>
+          <td>Milo Ember</td>
+          <td>Analyst</td>
+          <td>88</td>
+          <td>Flagged anomalies in redline telemetry.</td>
+        </tr>
+        <tr>
+          <td>Zara Flint</td>
+          <td>Pilot</td>
+          <td>97</td>
+          <td>Executed final smoke pass flawlessly.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
