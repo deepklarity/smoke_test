@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Smoke Test</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #2b0000, #5c0000 45%, #870000);
+      color: #ffe8e8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: min(920px, 100%);
+      background: rgba(60, 0, 0, 0.82);
+      border: 2px solid #ff4a4a;
+      border-radius: 14px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      text-align: center;
+      color: #ffd4d4;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 8px rgba(255, 40, 40, 0.45);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #7e1111;
+      border: 1px solid #ff8b8b;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead th {
+      background: #b60000;
+      color: #fff4f4;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ff7a7a;
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(odd) {
+      background: #8f1b1b;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #741212;
+    }
+
+    tbody tr:hover {
+      background: #a62222;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Smoke test results table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Avery Quinn</td>
+          <td>Lead Analyst</td>
+          <td>94</td>
+          <td>Validated all edge-case scenarios.</td>
+        </tr>
+        <tr>
+          <td>Nolan Reed</td>
+          <td>QA Engineer</td>
+          <td>88</td>
+          <td>Found two regressions and documented fixes.</td>
+        </tr>
+        <tr>
+          <td>Priya Vale</td>
+          <td>Product Owner</td>
+          <td>97</td>
+          <td>Approved final acceptance criteria.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
