@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      --red-900: #7f1d1d;
+      --red-700: #b91c1c;
+      --red-600: #dc2626;
+      --red-100: #fee2e2;
+      --red-50: #fef2f2;
+      --text: #1f2937;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, var(--red-50) 0%, #fff 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 48px 20px;
+    }
+
+    .container {
+      width: min(920px, 100%);
+      background: var(--white);
+      border: 2px solid var(--red-100);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 10px 24px rgba(127, 29, 29, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      color: var(--red-700);
+      font-size: 2rem;
+      letter-spacing: 0.3px;
+      border-left: 6px solid var(--red-600);
+      padding-left: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #fca5a5;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead th {
+      background: linear-gradient(180deg, var(--red-700), var(--red-900));
+      color: var(--white);
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 600;
+      border: 1px solid #991b1b;
+    }
+
+    tbody td {
+      padding: 12px 14px;
+      border: 1px solid #fecaca;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #fff;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: var(--red-50);
+    }
+
+    tbody tr:hover {
+      background-color: var(--red-100);
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .score {
+      font-weight: 700;
+      color: var(--red-700);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Codex smoke test data table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Avery Quinn</td>
+          <td>Systems Analyst</td>
+          <td class="score">92</td>
+          <td>Excellent cross-team communication and strong documentation quality.</td>
+        </tr>
+        <tr>
+          <td>Rhea Calder</td>
+          <td>QA Engineer</td>
+          <td class="score">88</td>
+          <td>Consistently catches edge cases and improves release confidence.</td>
+        </tr>
+        <tr>
+          <td>Milo Voss</td>
+          <td>Product Designer</td>
+          <td class="score">95</td>
+          <td>Delivered polished interfaces with clear user flows and accessibility focus.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
