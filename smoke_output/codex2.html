@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smoke Test — Codex 2</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 800px; width: 100%; }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #16213e;
+      border-bottom: 3px solid #0f3460;
+      padding-bottom: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    thead { background: #0f3460; color: #fff; }
+    th, td { padding: 0.75rem 1rem; text-align: left; }
+    th { font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; }
+    tbody tr { border-bottom: 1px solid #e2e8f0; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: #e8f0fe; }
+    .score { font-weight: 700; color: #0f3460; }
+    .notes { color: #4a5568; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Team Performance Report</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice Chen</td>
+          <td>Frontend Lead</td>
+          <td class="score">92</td>
+          <td class="notes">Excellent UI polish and accessibility improvements</td>
+        </tr>
+        <tr>
+          <td>Bob Martinez</td>
+          <td>Backend Engineer</td>
+          <td class="score">87</td>
+          <td class="notes">Optimized API response times by 40%</td>
+        </tr>
+        <tr>
+          <td>Carol Nguyen</td>
+          <td>QA Analyst</td>
+          <td class="score">95</td>
+          <td class="notes">Caught critical regression before release</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
