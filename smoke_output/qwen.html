@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Smoke Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background-color: #e8f0fe;
+            color: #1a1a2e;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(13, 71, 161, 0.15);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #1565c0;
+            color: #ffffff;
+        }
+
+        th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid #e3f2fd;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f9ff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score {
+            font-weight: 600;
+            color: #0d47a1;
+        }
+
+        .notes {
+            color: #546e7a;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Qwen Smoke Test</h1>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Score</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice Chen</td>
+                    <td>Frontend Developer</td>
+                    <td class="score">92</td>
+                    <td class="notes">Excellent UI/UX contributions this sprint</td>
+                </tr>
+                <tr>
+                    <td>Bob Martinez</td>
+                    <td>Backend Engineer</td>
+                    <td class="score">88</td>
+                    <td class="notes">Optimized API response times by 40%</td>
+                </tr>
+                <tr>
+                    <td>Carol Wu</td>
+                    <td>QA Analyst</td>
+                    <td class="score">95</td>
+                    <td class="notes">Caught critical regression before release</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
