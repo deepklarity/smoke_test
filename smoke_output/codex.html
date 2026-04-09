@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Smoke Test</title>
+  <style>
+    :root {
+      --red-900: #7f1d1d;
+      --red-700: #b91c1c;
+      --red-100: #fee2e2;
+      --red-50: #fef2f2;
+      --text: #1f2937;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--red-50), #ffffff);
+      color: var(--text);
+      padding: 32px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: var(--red-900);
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid var(--red-700);
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(127, 29, 29, 0.12);
+    }
+
+    th,
+    td {
+      border: 1px solid #ef4444;
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--red-700);
+      color: #ffffff;
+      letter-spacing: 0.02em;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: var(--red-50);
+    }
+
+    tbody tr:hover {
+      background-color: var(--red-100);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Codex Smoke Test</h1>
+    <table aria-label="Codex smoke test data table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aria Finch</td>
+          <td>Navigator</td>
+          <td>92</td>
+          <td>Excellent path planning under pressure.</td>
+        </tr>
+        <tr>
+          <td>Jules Mercer</td>
+          <td>Analyst</td>
+          <td>88</td>
+          <td>Strong pattern recognition and reporting.</td>
+        </tr>
+        <tr>
+          <td>Niko Vale</td>
+          <td>Operator</td>
+          <td>95</td>
+          <td>Consistent execution with minimal errors.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
