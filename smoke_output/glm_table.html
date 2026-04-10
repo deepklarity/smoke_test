@@ -8,35 +8,45 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #e0f2f1;
+            background-color: #f0fdfa;
         }
         h1 {
             color: #00897b;
             text-align: center;
+            margin-bottom: 30px;
         }
         table {
-            border-collapse: collapse;
             width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
+            border-collapse: collapse;
+            background-color: #ffffff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
-        th, td {
-            border: 1px solid #00796b;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
+        thead {
             background-color: #00897b;
             color: white;
-            font-weight: bold;
         }
-        tr:nth-child(even) {
-            background-color: #e0f2f1;
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0f2f1;
+        }
+        th {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
         }
         tr:hover {
-            background-color: #b2dfdb;
+            background-color: #e0f2f1;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .score {
+            color: #00796b;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -53,22 +63,22 @@
         </thead>
         <tbody>
             <tr>
-                <td>James Wilson</td>
-                <td>Database Administrator</td>
-                <td>92</td>
-                <td>Expert in PostgreSQL and MongoDB optimization</td>
+                <td>Alex Morgan</td>
+                <td>Frontend Developer</td>
+                <td class="score">92</td>
+                <td>Excellent UI/UX skills</td>
             </tr>
             <tr>
-                <td>Maria Garcia</td>
-                <td>QA Engineer</td>
-                <td>88</td>
-                <td>Specializes in automated testing frameworks</td>
+                <td>Kevin Patel</td>
+                <td>Data Scientist</td>
+                <td class="score">88</td>
+                <td>Strong ML background</td>
             </tr>
             <tr>
-                <td>Christopher Taylor</td>
-                <td>Security Analyst</td>
-                <td>95</td>
-                <td>Certified in penetration testing and compliance</td>
+                <td>Rachel Green</td>
+                <td>DevOps Engineer</td>
+                <td class="score">95</td>
+                <td>Certified cloud architect</td>
             </tr>
         </tbody>
     </table>
