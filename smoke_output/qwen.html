@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwen Smoke Test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background-color: #f0f4f8;
+      color: #1a202c;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a5f;
+      margin-bottom: 32px;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .table-container {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.15);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+    }
+
+    thead {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+
+    th {
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #f8fafc;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    tbody tr:hover {
+      background-color: #dbeafe;
+      transition: background-color 0.2s ease;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .score {
+      font-weight: 600;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Qwen Smoke Test</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice Chen</td>
+          <td>QA Engineer</td>
+          <td class="score">94</td>
+          <td>Excellent attention to detail across all test suites</td>
+        </tr>
+        <tr>
+          <td>Bob Martinez</td>
+          <td>DevOps Lead</td>
+          <td class="score">87</td>
+          <td>Strong infrastructure automation, minor gaps in monitoring</td>
+        </tr>
+        <tr>
+          <td>Carol Wu</td>
+          <td>Frontend Developer</td>
+          <td class="score">91</td>
+          <td>Consistent delivery with high code quality standards</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
