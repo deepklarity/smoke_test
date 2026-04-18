@@ -21,9 +21,79 @@
     </header>
 
     <main class="container">
-        <h2>Contact Us</h2>
-        <p>This page is currently under development. Please check back soon!</p>
+        <h2 style="text-align: center; margin-bottom: 2rem;">Contact Us</h2>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><i>📞</i> <strong>Phone:</strong> (503) 555-0147</p>
+                <p><i>✉️</i> <strong>Email:</strong> hello@beanandbloom.com</p>
+                <p><i>📍</i> <strong>Address:</strong> 214 Maple Street<br>Portland, OR 97201</p>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message">Please enter your name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <div class="error-message">Please enter your message</div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div id="successMessage" class="success-message">
+                    Thank you for your message! We'll get back to you soon.
+                </div>
+            </div>
+        </div>
     </main>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            const successMessage = document.getElementById('successMessage');
+            
+            let isValid = true;
+            
+            function validateField(field, condition) {
+                const formGroup = field.closest('.form-group');
+                if (condition) {
+                    formGroup.classList.remove('error');
+                    return true;
+                } else {
+                    formGroup.classList.add('error');
+                    return false;
+                }
+            }
+            
+            const isNameValid = validateField(nameInput, nameInput.value.trim() !== '');
+            const isEmailValid = validateField(emailInput, emailInput.value.trim() !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()));
+            const isMessageValid = validateField(messageInput, messageInput.value.trim() !== '');
+            
+            isValid = isNameValid && isEmailValid && isMessageValid;
+            
+            if (isValid) {
+                this.style.display = 'none';
+                successMessage.classList.add('show');
+            }
+        });
+    </script>
 
     <footer>
         <div class="footer-content">
