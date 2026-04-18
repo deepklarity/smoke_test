@@ -6,6 +6,9 @@
     --bg-warm: #E5E5CB;
     --text-dark: #333;
     --text-light: #fff;
+    --error-color: #dc3545;
+    --success-bg: #d4edda;
+    --success-text: #155724;
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -83,6 +86,11 @@ nav ul li a:hover {
     border-bottom: 2px solid var(--accent-color);
 }
 
+/* Mobile Nav Toggle */
+.mobile-nav-toggle {
+    display: none;
+}
+
 /* Hero Section */
 .hero {
     height: 60vh;
@@ -120,6 +128,7 @@ nav ul li a:hover {
     border-radius: 50px;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: inline-block;
 }
 
 .cta-button:hover {
@@ -600,6 +609,7 @@ footer {
 
 .form-group {
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .form-group label {
@@ -629,6 +639,44 @@ footer {
     box-shadow: 0 0 0 3px rgba(213, 206, 163, 0.2);
 }
 
+.form-group.error input,
+.form-group.error textarea {
+    border-color: var(--error-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.success-message {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    display: none;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.success-message.show {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .contact-form .cta-button {
     width: 100%;
     border: none;
@@ -636,31 +684,86 @@ footer {
     font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
-
+/* Responsive & Mobile Nav */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        padding: 1.5rem 5%;
-    }
-    
-    .logo {
-        margin-bottom: 1.5rem;
+        padding: 1rem 5%;
     }
 
+    .mobile-nav-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
+    }
+    
+    .hamburger {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: var(--text-light);
+        position: relative;
+        transition: background 0.3s;
+    }
+    
+    .hamburger::before, .hamburger::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 2px;
+        background: var(--text-light);
+        left: 0;
+        transition: transform 0.3s, top 0.3s, bottom 0.3s;
+    }
+    
+    .hamburger::before { top: -8px; }
+    .hamburger::after { bottom: -8px; }
+    
+    .mobile-nav-toggle.active .hamburger {
+        background: transparent;
+    }
+    
+    .mobile-nav-toggle.active .hamburger::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .mobile-nav-toggle.active .hamburger::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--primary-color);
+        padding: 6rem 2rem;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
     nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
     
     nav ul li {
-        margin: 0.5rem 0.8rem;
+        margin: 1.5rem 0;
+        margin-left: 0;
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
     }
 
     .hero h1, .menu-hero h1, .brand-story h2, .visit-header h2 {
@@ -669,6 +772,11 @@ footer {
 
     .container, .menu-container {
         margin: 3rem auto;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
 
     .footer-content {
@@ -690,4 +798,3 @@ footer {
         padding: 0.8rem 1.8rem;
     }
 }
-

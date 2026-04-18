@@ -9,6 +9,9 @@
 <body>
     <header>
         <a href="index.html" class="logo">Bean & Bloom</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -46,30 +49,38 @@
                     </div>
                 </div>
 
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <div class="error-message">Please enter your name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <div class="error-message">Please enter a valid email address</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="general">General Inquiry</option>
+                                <option value="catering">Catering</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                            <div class="error-message">Please enter your message</div>
+                        </div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                    <div id="successMessage" class="success-message">
+                        Thank you for your message! We'll get back to you soon.
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject">
-                            <option value="general">General Inquiry</option>
-                            <option value="catering">Catering</option>
-                            <option value="feedback">Feedback</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="cta-button">Send Message</button>
-                </form>
+                </div>
             </div>
         </section>
     </main>
@@ -97,5 +108,62 @@
             <p>&copy; 2026 Bean & Bloom Coffee House. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                const successMessage = document.getElementById('successMessage');
+                
+                let isValid = true;
+                
+                function validateField(field, condition) {
+                    const formGroup = field.closest('.form-group');
+                    if (condition) {
+                        formGroup.classList.remove('error');
+                        return true;
+                    } else {
+                        formGroup.classList.add('error');
+                        return false;
+                    }
+                }
+                
+                const isNameValid = validateField(nameInput, nameInput.value.trim() !== '');
+                const isEmailValid = validateField(emailInput, emailInput.value.trim() !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()));
+                const isMessageValid = validateField(messageInput, messageInput.value.trim() !== '');
+                
+                isValid = isNameValid && isEmailValid && isMessageValid;
+                
+                if (isValid) {
+                    this.style.display = 'none';
+                    successMessage.classList.add('show');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
