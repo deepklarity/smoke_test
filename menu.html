@@ -5,6 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean & Bloom | Menu</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .menu-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 5%;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .menu-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .menu-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+
+        .menu-category {
+            margin-bottom: 4rem;
+        }
+
+        .menu-category h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 1rem;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .menu-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .menu-item p {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .menu-item .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .menu-hero h1 {
+                font-size: 2rem;
+            }
+
+            .menu-category h2 {
+                font-size: 2rem;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -20,9 +113,112 @@
         </nav>
     </header>
 
-    <main class="container">
-        <h2>Menu</h2>
-        <p>This page is currently under development. Please check back soon!</p>
+    <section class="menu-hero">
+        <h1>Our Menu</h1>
+        <p>Crafted with care, served with love. Explore our handpicked selection of beverages and bites.</p>
+    </section>
+
+    <main class="menu-container">
+        <!-- Coffee Category -->
+        <section class="menu-category">
+            <h2>Coffee</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Classic Espresso</h3>
+                    <p>Rich, bold shot of our house blend. The perfect pick-me-up for any time of day.</p>
+                    <span class="price">$3.25</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Vanilla Latte</h3>
+                    <p>Smooth espresso with steamed milk and a touch of vanilla syrup. A customer favorite.</p>
+                    <span class="price">$4.75</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Cappuccino</h3>
+                    <p>Equal parts espresso, steamed milk, and velvety foam. Traditional Italian perfection.</p>
+                    <span class="price">$4.50</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Cold Brew</h3>
+                    <p>Slow-steeped for 16 hours. Smooth, naturally sweet, and refreshingly bold.</p>
+                    <span class="price">$4.25</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Caramel Macchiato</h3>
+                    <p>Espresso marked with vanilla-infused milk and drizzled with buttery caramel.</p>
+                    <span class="price">$5.25</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Mocha</h3>
+                    <p>Rich espresso blended with dark chocolate and steamed milk. Topped with whipped cream.</p>
+                    <span class="price">$5.00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tea Category -->
+        <section class="menu-category">
+            <h2>Tea</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Matcha Latte</h3>
+                    <p>Premium ceremonial-grade matcha whisked with creamy oat milk. Earthy and energizing.</p>
+                    <span class="price">$5.50</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Chai Latte</h3>
+                    <p>Spiced black tea with cinnamon, cardamom, and ginger. Sweetened and steamed to perfection.</p>
+                    <span class="price">$4.75</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Chamomile Dream</h3>
+                    <p>Soothing herbal blend with chamomile flowers, lavender, and a hint of honey.</p>
+                    <span class="price">$4.00</span>
+                </div>
+                <div class="menu-item">
+                    <h3>English Breakfast</h3>
+                    <p>Bold black tea blend perfect for morning sips. Served with milk and sugar on the side.</p>
+                    <span class="price">$3.75</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Peppermint Green Tea</h3>
+                    <p>Refreshing green tea infused with cool peppermint. Naturally caffeine-light and invigorating.</p>
+                    <span class="price">$4.25</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Category -->
+        <section class="menu-category">
+            <h2>Food</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Butter Croissant</h3>
+                    <p>Flaky, golden pastry baked fresh daily. Perfectly buttery and melt-in-your-mouth delicious.</p>
+                    <span class="price">$3.50</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Almond Biscotti</h3>
+                    <p>Twice-baked Italian cookies studded with almonds. Ideal for dipping in your coffee.</p>
+                    <span class="price">$2.75</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Avocado Toast</h3>
+                    <p>Smashed avocado on toasted sourdough with cherry tomatoes, radish, and everything bagel seasoning.</p>
+                    <span class="price">$7.50</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Turkey & Swiss Sandwich</h3>
+                    <p>Roasted turkey, Swiss cheese, arugula, and honey mustard on a fresh ciabatta roll.</p>
+                    <span class="price">$8.75</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Blueberry Muffin</h3>
+                    <p>Moist, house-made muffin bursting with fresh blueberries and a crumbly streusel top.</p>
+                    <span class="price">$3.75</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
