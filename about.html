@@ -8,7 +8,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">Bean & Bloom</div>
+        <a href="index.html" class="logo">Bean & Bloom</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,33 +26,27 @@
     <main class="container">
         <section class="brand-story">
             <h2>Our Brand Story</h2>
-            <p>Bean & Bloom was born from a simple obsession: the belief that exceptional coffee should be paired with moments of beauty. Founded in 2018 by longtime friends Elena and Marcus, our café began as a small corner shop with a single espresso machine and a whole lot of dreams. Elena, a former floral designer, brought her eye for aesthetics, while Marcus, a seasoned barista with a decade of experience, contributed his deep knowledge of beans and brewing.</p>
-            <p>What started as a neighborhood gem quickly grew into a gathering place for the community. We spent months traveling to coffee farms in Ethiopia, Colombia, and Guatemala, forging direct-trade relationships that ensure every bean tells a story. But we didn't stop there—Elena's background in floral design inspired us to incorporate fresh, locally-sourced blooms into our space, creating an atmosphere where coffee and nature coexist in perfect harmony.</p>
-            <p>Today, Bean & Bloom remains independently owned and operated. We still source our beans directly from farmers, still design our own seasonal menu, and still treat every guest like family. Whether you're here for your morning ritual or a quiet afternoon with a good book, you're part of our story—and we're honored to be part of yours.</p>
+            <p>Founded in 2022, Bean & Bloom was born from a simple idea: that a great cup of coffee should be enjoyed in a beautiful, inspiring environment. Our founders, lifelong coffee enthusiasts and amateur florists, wanted to create a space that celebrates both the art of the brew and the beauty of nature.</p>
+            <p>Every bean we serve is ethically sourced from small-scale farmers who prioritize quality and sustainability. Our floral arrangements are curated weekly from local growers, ensuring that every visit to Bean & Bloom is a fresh experience for all your senses.</p>
         </section>
 
         <section class="values-section">
-            <h2>Our Values</h2>
+            <h2>Our Core Values</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">🌱</div>
+                    <span class="icon">🌿</span>
                     <h3>Sustainability</h3>
-                    <p>From compostable packaging to direct-trade beans, we're committed to minimizing our environmental footprint while maximizing flavor.</p>
+                    <p>We are committed to eco-friendly practices, from compostable packaging to our zero-waste initiative in the kitchen.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <span class="icon">🤝</span>
                     <h3>Community</h3>
-                    <p>We believe great coffee brings people together. Our space hosts local artists, book clubs, and community events every month.</p>
+                    <p>We believe in supporting our local neighborhood by hosting events and showcasing local artists and musicians.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">☕</div>
+                    <span class="icon">☕</span>
                     <h3>Quality</h3>
-                    <p>Every cup is crafted with precision—from bean selection to brewing temperature. We never compromise on the perfect pour.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">💜</div>
-                    <h3>Hospitality</h3>
-                    <p>Warm smiles, genuine conversations, and a space where everyone feels at home. That's the Bean & Bloom promise.</p>
+                    <p>No compromises. We meticulously test every batch of beans to ensure the perfect flavor profile in every cup.</p>
                 </div>
             </div>
         </section>
@@ -78,5 +75,25 @@
             <p>&copy; 2026 Bean & Bloom Coffee House. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

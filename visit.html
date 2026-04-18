@@ -8,7 +8,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">Bean & Bloom</div>
+        <a href="index.html" class="logo">Bean & Bloom</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,38 +26,38 @@
     <main class="container">
         <div class="visit-header">
             <h2>Visit Us</h2>
-            <p>We'd love to welcome you through our doors</p>
+            <p>Come experience the magic of Bean & Bloom in person.</p>
         </div>
 
         <div class="address-box">
-            <h3>Our Location</h3>
+            <h3>Find Us Here</h3>
             <p>214 Maple Street</p>
             <p>Portland, OR 97201</p>
         </div>
 
         <div class="map-placeholder">
-            <span>🗺️ Map</span>
+            <span>Our Location (Map)</span>
         </div>
 
-        <div class="hours-section">
-            <h3>Opening Hours</h3>
+        <section class="hours-section">
+            <h3>Our Hours</h3>
             <div class="hours-table">
                 <table>
                     <tr>
                         <th>Monday - Friday</th>
-                        <td>7:00 AM - 7:00 PM</td>
+                        <td>7:00 AM - 6:00 PM</td>
                     </tr>
                     <tr>
                         <th>Saturday</th>
-                        <td>8:00 AM - 5:00 PM</td>
+                        <td>8:00 AM - 7:00 PM</td>
                     </tr>
                     <tr>
                         <th>Sunday</th>
-                        <td>8:00 AM - 5:00 PM</td>
+                        <td>9:00 AM - 5:00 PM</td>
                     </tr>
                 </table>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -80,5 +83,25 @@
             <p>&copy; 2026 Bean & Bloom Coffee House. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

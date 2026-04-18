@@ -5,103 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean & Bloom | Menu</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .menu-hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            padding: 5rem 5%;
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .menu-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-
-        .menu-hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .menu-container {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 5%;
-        }
-
-        .menu-category {
-            margin-bottom: 4rem;
-        }
-
-        .menu-category h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 1rem;
-        }
-
-        .menu-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .menu-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .menu-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .menu-item p {
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .menu-item .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        @media (max-width: 768px) {
-            .menu-hero h1 {
-                font-size: 2rem;
-            }
-
-            .menu-category h2 {
-                font-size: 2rem;
-            }
-
-            .menu-items {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
-        <div class="logo">Bean & Bloom</div>
+        <a href="index.html" class="logo">Bean & Bloom</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -244,5 +154,25 @@
             <p>&copy; 2026 Bean & Bloom Coffee House. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
