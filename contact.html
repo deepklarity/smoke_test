@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Bean & Bloom</div>
+        <a href="index.html" class="logo">Bean & Bloom</a>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,8 +21,57 @@
     </header>
 
     <main class="container">
-        <h2>Contact Us</h2>
-        <p>This page is currently under development. Please check back soon!</p>
+        <section class="contact-section">
+            <div class="contact-header">
+                <h2>Get in Touch</h2>
+                <p>Have a question or just want to say hello? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info-cards">
+                    <div class="info-card">
+                        <span class="icon">📍</span>
+                        <h3>Our Location</h3>
+                        <p>214 Maple Street, Portland, OR 97201</p>
+                    </div>
+                    <div class="info-card">
+                        <span class="icon">📞</span>
+                        <h3>Phone</h3>
+                        <p>(503) 555-0147</p>
+                    </div>
+                    <div class="info-card">
+                        <span class="icon">✉️</span>
+                        <h3>Email</h3>
+                        <p>hello@beanandbloom.com</p>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="catering">Catering</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <footer>
