@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean & Bloom | Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Bean & Bloom</a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visit.html">Visit Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Freshly Brewed Moments</h1>
+        <p>Experience the perfect blend of organic beans and floral inspiration in every cup.</p>
+        <a href="menu.html" class="cta-button">Explore Our Menu</a>
+    </section>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Our Story</h2>
+            <p>At Bean & Bloom, we believe that coffee is more than just a drink—it's an experience. Nestled in the heart of the city, we combine the rich, bold flavors of ethically sourced beans with the delicate beauty of fresh blooms. Whether you're here for your morning caffeine fix or a quiet afternoon retreat, we provide a warm, welcoming space for every coffee lover.</p>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Featured Favorites</h2>
+            <div class="featured">
+                <div class="card">
+                    <h3>Lavender Honey Latte</h3>
+                    <p>Espresso combined with steamed milk, infused with real lavender and a touch of local honey.</p>
+                    <span class="price">$5.50</span>
+                </div>
+                <div class="card">
+                    <h3>Bloom Brew Cold Foam</h3>
+                    <p>Our signature cold brew topped with a silky floral-infused cold foam.</p>
+                    <span class="price">$5.25</span>
+                </div>
+                <div class="card">
+                    <h3>Rosemary Sea Salt Mocha</h3>
+                    <p>Rich dark chocolate mocha with a hint of fresh rosemary and a pinch of sea salt.</p>
+                    <span class="price">$5.75</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-item">
+                <blockquote style="color: var(--primary-color);">"The best atmosphere in town. The Lavender Honey Latte is a must-try!"</blockquote>
+                <p>— Sarah J.</p>
+            </div>
+            <div class="testimonial-item">
+                <blockquote style="color: var(--primary-color);">"A peaceful oasis with incredible coffee. I love working from here."</blockquote>
+                <p>— Michael T.</p>
+            </div>
+            <div class="testimonial-item">
+                <blockquote style="color: var(--primary-color);">"Beautiful decor and even better coffee. The staff is always so friendly."</blockquote>
+                <p>— Emily R.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Visit Us</h3>
+                <p>214 Maple Street</p>
+                <p>Portland, OR 97201</p>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>(503) 555-0147</p>
+                <p>hello@beanandbloom.com</p>
+            </div>
+            <div class="footer-links">
+                <h3>Follow Us</h3>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bean & Bloom Coffee House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
