@@ -13,17 +13,17 @@ import { colors } from './theme';
 import { PrimaryButton } from './components';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const HORIZONTAL_MARGIN = 32;
+const HORIZONTAL_MARGIN = 24;
 const CARD_WIDTH = SCREEN_WIDTH - HORIZONTAL_MARGIN * 2;
-const CARD_HEIGHT = 320;
+const CARD_HEIGHT = 360;
 
 const cardData = [
   {
     id: 1,
     step: '01',
-    icon: '🎯',
-    title: 'Guess the Word',
-    description: 'One player sees a secret word and must draw it while others guess!',
+    icon: '🎨',
+    title: 'How to Play',
+    description: 'Teams take turns drawing and guessing. One team picks a word for the drawer, and the drawer’s team tries to guess it.',
     tint: '#E0F4FF',
     accent: '#87CEEB',
     titleColor: '#4A90A4',
@@ -32,8 +32,8 @@ const cardData = [
     id: 2,
     step: '02',
     icon: '✏️',
-    title: 'Draw It Out',
-    description: 'Sketch clues on the canvas — no text or numbers allowed!',
+    title: 'Your Word',
+    description: 'When it’s your turn to draw, tap to reveal your secret word — only you can see it.',
     tint: '#E0FFF4',
     accent: '#90EE90',
     titleColor: '#4A9B4A',
@@ -41,29 +41,29 @@ const cardData = [
   {
     id: 3,
     step: '03',
-    icon: '⏱️',
-    title: 'Race the Clock',
-    description: 'You have 60 seconds per round — guess fast!',
-    tint: '#FFE8D6',
-    accent: '#FFB347',
-    titleColor: '#CC8030',
-  },
-  {
-    id: 4,
-    step: '04',
-    icon: '👥',
-    title: 'Team Play',
-    description: 'Work together — one draws, everyone guesses!',
+    icon: '🎯',
+    title: 'Score a Point',
+    description: 'Every correct guess earns the drawing team one point.',
     tint: '#FFE4EC',
     accent: '#FFB6C1',
     titleColor: '#CC6B8A',
   },
   {
+    id: 4,
+    step: '04',
+    icon: '⏱️',
+    title: 'The Clock',
+    description: 'Your team has a set time to shout the word before the buzzer.',
+    tint: '#FFE8D6',
+    accent: '#FFB347',
+    titleColor: '#CC8030',
+  },
+  {
     id: 5,
     step: '05',
-    icon: '🎯',
-    title: 'Earn Points',
-    description: 'Correct guesses earn points for your team!',
+    icon: '💡',
+    title: 'Use a Hint',
+    description: 'Stuck? A hint shows a reference image — but hints are limited, so use them wisely.',
     tint: '#F0E6FF',
     accent: '#DDA0DD',
     titleColor: '#8B5A9B',
@@ -72,8 +72,8 @@ const cardData = [
     id: 6,
     step: '06',
     icon: '🏆',
-    title: 'Win Together',
-    description: 'First team to 50 points wins the game!',
+    title: 'Win the Match',
+    description: 'First team to reach the target score wins the game!',
     tint: '#FFFACD',
     accent: '#F0E68C',
     titleColor: '#B8A830',
@@ -98,24 +98,27 @@ interface CardItemProps {
 
 function CardItem({ item, onClose, onStartGame }: CardItemProps) {
   return (
-    <View style={[styles.card, { backgroundColor: item.tint }]}>
-      <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-        <Text style={styles.closeIcon}>×</Text>
-      </TouchableOpacity>
+    <View style={styles.cardPage}>
+      <View style={[styles.card, { backgroundColor: item.tint }]}>
+        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+          <Text style={styles.closeIcon}>×</Text>
+        </TouchableOpacity>
 
-      <Text style={styles.stepLabel}>{item.step}</Text>
+        <Text style={styles.stepLabel}>{item.step}</Text>
 
-      <Text style={styles.cardIcon}>{item.icon}</Text>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardIcon}>{item.icon}</Text>
+          <Text style={[styles.cardTitle, { color: item.titleColor }]}>{item.title}</Text>
 
-      <Text style={[styles.cardTitle, { color: item.titleColor }]}>{item.title}</Text>
-
-      {item.id === 7 ? (
-        <View style={styles.startButtonContainer}>
-          <PrimaryButton title="Start Game" onPress={onStartGame} />
+          {item.id === 7 ? (
+            <View style={styles.startButtonContainer}>
+              <PrimaryButton title="Start Game" onPress={onStartGame} />
+            </View>
+          ) : (
+            <Text style={styles.cardDescription}>{item.description}</Text>
+          )}
         </View>
-      ) : (
-        <Text style={styles.cardDescription}>{item.description}</Text>
-      )}
+      </View>
     </View>
   );
 }
@@ -130,7 +133,7 @@ export function HowToPlayModal({ visible, onClose }: HowToPlayModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleScroll = (event: any) => {
-    const index = Math.round(event.nativeEvent.contentOffset.x / CARD_WIDTH);
+    const index = Math.round(event.nativeEvent.contentOffset.x / SCREEN_WIDTH);
     setCurrentIndex(index);
   };
 
@@ -160,6 +163,7 @@ export function HowToPlayModal({ visible, onClose }: HowToPlayModalProps) {
           <FlatList
             ref={flatListRef}
             data={cardData}
+            style={styles.carousel}
             renderItem={({ item }) => (
               <CardItem
                 item={item}
@@ -169,16 +173,14 @@ export function HowToPlayModal({ visible, onClose }: HowToPlayModalProps) {
             )}
             keyExtractor={(item) => item.id.toString()}
             horizontal
-            pagingEnabled={false}
+            pagingEnabled
             showsHorizontalScrollIndicator={false}
             onScroll={handleScroll}
             scrollEventThrottle={16}
-            snapToInterval={CARD_WIDTH}
-            snapToAlignment="start"
             decelerationRate="fast"
             getItemLayout={(_, index) => ({
-              length: CARD_WIDTH,
-              offset: CARD_WIDTH * index,
+              length: SCREEN_WIDTH,
+              offset: SCREEN_WIDTH * index,
               index,
             })}
           />
@@ -234,23 +236,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
-    flex: 1,
     width: '100%',
+  },
+  carousel: {
+    flexGrow: 0,
+    height: CARD_HEIGHT + 24,
+  },
+  cardPage: {
+    width: SCREEN_WIDTH,
+    paddingHorizontal: HORIZONTAL_MARGIN,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
-    marginHorizontal: HORIZONTAL_MARGIN,
-    borderRadius: 20,
-    padding: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 24,
+    paddingVertical: 32,
+    paddingHorizontal: 28,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
     elevation: 6,
+  },
+  cardContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   closeButton: {
     position: 'absolute',
@@ -277,21 +290,20 @@ const styles = StyleSheet.create({
   },
   cardIcon: {
     fontSize: 72,
-    marginTop: 40,
-    marginBottom: 20,
+    marginBottom: 16,
   },
   cardTitle: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
   },
   cardDescription: {
-    fontSize: 16,
+    fontSize: 17,
     textAlign: 'center',
     color: '#555',
-    lineHeight: 24,
-    paddingHorizontal: 8,
+    lineHeight: 26,
+    paddingHorizontal: 4,
   },
   startButtonContainer: {
     width: '100%',

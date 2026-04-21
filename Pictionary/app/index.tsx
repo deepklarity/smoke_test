@@ -24,7 +24,7 @@ export default function HomeScreen() {
 
         <View style={styles.underline} />
 
-        <Text style={styles.tagline}>Guess, Draw, Celebrate!</Text>
+        <Text style={styles.tagline}>Draw, Guess, Celebrate!</Text>
 
         <View style={styles.buttonContainer}>
           <PrimaryButton
