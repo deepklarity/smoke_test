@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { router } from 'expo-router';
 import { colors } from '../utils/theme';
 import { PrimaryButton, SecondaryButton } from '../utils/components';
+import { HowToPlayModal } from '../utils/HowToPlayModal';
 
 export default function HomeScreen() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
@@ -28,6 +29,7 @@ export default function HomeScreen() {
         <View style={styles.buttonContainer}>
           <PrimaryButton
             title="Start Game"
+            icon="▶"
             onPress={() => router.push('/setup')}
           />
 
@@ -35,11 +37,16 @@ export default function HomeScreen() {
 
           <SecondaryButton
             label="How to Play"
-            icon="❓"
+            icon="📖"
             onPress={() => setShowHowToPlay(true)}
           />
         </View>
       </View>
+
+      <HowToPlayModal
+        visible={showHowToPlay}
+        onClose={() => setShowHowToPlay(false)}
+      />
     </SafeAreaView>
   );
 }
