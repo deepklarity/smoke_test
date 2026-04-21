@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -10,11 +10,14 @@ import {
   AppState,
   BackHandler,
   Platform,
+  Image,
+  ActivityIndicator,
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../utils/theme';
 import { getRandomWords, CATEGORIES, CATEGORY_EMOJI, Category, DifficultyWithMix } from '../utils/words';
+import { clearHintCache, resetMatchState, prefetchHintImages, abortAllFetches, fetchHintImage, getEmojiFallback, getCachedHint, isHintCached } from '../utils/hints';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const CARD_MARGIN = 20;
@@ -89,7 +92,11 @@ function getTeamColor(teamIndex: number): TeamColor {
 
 export default function GameplayScreen() {
   const params = useLocalSearchParams();
-  const config: GameConfig = params.config ? JSON.parse(params.config as string) : null;
+  const configParam = params.config as string | undefined;
+  const config: GameConfig | null = useMemo(
+    () => (configParam ? JSON.parse(configParam) : null),
+    [configParam]
+  );
 
   const [teams, setTeams] = useState<Team[]>([]);
   const [category, setCategory] = useState<CategoryInput>('Random');
@@ -108,6 +115,12 @@ export default function GameplayScreen() {
   const [lockFireProtection, setLockFireProtection] = useState(false);
   const [categoryLocked, setCategoryLocked] = useState(false);
   const [teamRotationIndex, setTeamRotationIndex] = useState(0);
+  const [hintUsed, setHintUsed] = useState(false);
+  const [hintLoading, setHintLoading] = useState(false);
+  const [hintUrl, setHintUrl] = useState<string | null>(null);
+  const [hintError, setHintError] = useState(false);
+  const hintAbortControllerRef = useRef<AbortController | null>(null);
+  const hintPollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -152,6 +165,18 @@ export default function GameplayScreen() {
       return false;
     });
     return () => backHandler.remove();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (hintAbortControllerRef.current) {
+        hintAbortControllerRef.current.abort();
+      }
+      if (hintPollingRef.current) {
+        clearInterval(hintPollingRef.current);
+      }
+      abortAllFetches();
+    };
   }, []);
 
   useEffect(() => {
@@ -235,6 +260,12 @@ export default function GameplayScreen() {
     setCategoryLocked(false);
     setGotItFeedback(false);
     setTimesUpFeedback(false);
+    setLockFireProtection(false);
+    setHintUsed(false);
+    setHintUrl(null);
+    setHintError(false);
+    setHintLoading(false);
+    fadeAnim.setValue(1);
     gotItOpacityAnim.setValue(0);
     timesUpOpacityAnim.setValue(0);
   };
@@ -249,6 +280,12 @@ export default function GameplayScreen() {
     const newWords = getRandomWords(effectiveCategory, effectiveDifficulty, 8);
     setWords(newWords);
     setCategoryLocked(true);
+
+    if (config?.hintsEnabled) {
+      abortAllFetches();
+      prefetchHintImages(newWords);
+    }
+
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 250,
@@ -272,6 +309,71 @@ export default function GameplayScreen() {
     if (!revealedWord || phase !== 'pass') return;
     startTimer(timerSeconds);
     setPhase('draw');
+  };
+
+  const handleHintTap = () => {
+    if (!revealedWord || hintUsed) return;
+
+    setHintUsed(true);
+    setHintLoading(true);
+    setHintError(false);
+
+    const cached = getCachedHint(revealedWord);
+    if (cached) {
+      setHintUrl(cached);
+      setHintLoading(false);
+      return;
+    }
+
+    if (isHintCached(revealedWord)) {
+      setHintError(true);
+      setHintLoading(false);
+      return;
+    }
+
+    const controller = new AbortController();
+    hintAbortControllerRef.current = controller;
+
+    let pollCount = 0;
+    const maxPolls = 5;
+
+    const pollForHint = () => {
+      const cachedNow = getCachedHint(revealedWord);
+      if (cachedNow) {
+        setHintUrl(cachedNow);
+        setHintLoading(false);
+        if (hintPollingRef.current) {
+          clearInterval(hintPollingRef.current);
+          hintPollingRef.current = null;
+        }
+        return;
+      }
+
+      if (pollCount >= maxPolls) {
+        setHintError(true);
+        setHintLoading(false);
+        if (hintPollingRef.current) {
+          clearInterval(hintPollingRef.current);
+          hintPollingRef.current = null;
+        }
+        return;
+      }
+
+      pollCount++;
+    };
+
+    hintPollingRef.current = setInterval(pollForHint, 500);
+
+    setTimeout(() => {
+      if (hintLoading && !hintUrl && !hintError) {
+        setHintError(true);
+        setHintLoading(false);
+        if (hintPollingRef.current) {
+          clearInterval(hintPollingRef.current);
+          hintPollingRef.current = null;
+        }
+      }
+    }, 2500);
   };
 
   const handleGotIt = () => {
@@ -599,6 +701,38 @@ export default function GameplayScreen() {
               </Text>
             </View>
           </View>
+
+          {(hintUrl || hintLoading) && !hintError && (
+            <View style={styles.hintImageContainer}>
+              {hintLoading ? (
+                <View style={styles.hintLoadingContainer}>
+                  <ActivityIndicator size="large" color={colors.primary} />
+                </View>
+              ) : (
+                <Image
+                  source={{ uri: hintUrl ?? undefined }}
+                  style={styles.hintImage}
+                  resizeMode="cover"
+                />
+              )}
+            </View>
+          )}
+
+          {hintError && revealedWord && (
+            <View style={styles.hintImageContainer}>
+              <Text style={styles.hintEmojiText}>{getEmojiFallback(revealedWord)}</Text>
+            </View>
+          )}
+
+          {config?.hintsEnabled && revealedWord && !hintUsed && !isRedZone && (
+            <TouchableOpacity
+              style={styles.hintButton}
+              onPress={handleHintTap}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.hintButtonText}>Show Hint</Text>
+            </TouchableOpacity>
+          )}
 
           <TouchableOpacity
             style={styles.gotItButton}
@@ -1138,5 +1272,47 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: '#FFFFFF',
+  },
+  hintButton: {
+    backgroundColor: '#E6E0FA',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 12,
+    marginBottom: 16,
+    borderWidth: 2,
+    borderColor: '#B8A8E8',
+  },
+  hintButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#7B5DC8',
+  },
+  hintImageContainer: {
+    width: 220,
+    height: 220,
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  hintLoadingContainer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F5F5F5',
+  },
+  hintImage: {
+    width: '100%',
+    height: '100%',
+  },
+  hintEmojiText: {
+    fontSize: 96,
+    textAlign: 'center',
   },
 });
