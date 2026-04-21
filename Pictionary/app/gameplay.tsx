@@ -12,6 +12,7 @@ import {
   Platform,
   Image,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -50,7 +51,7 @@ interface Team {
 }
 
 interface GameConfig {
-  teams: { id: number; name: string }[];
+  teams: { id: number; name: string; score?: number }[];
   categoryMode: CategoryMode;
   selectedCategories: Category[];
   difficulty: DifficultyWithMix;
@@ -93,6 +94,7 @@ function getTeamColor(teamIndex: number): TeamColor {
 export default function GameplayScreen() {
   const params = useLocalSearchParams();
   const configParam = params.config as string | undefined;
+  const incomingRound = params.round ? parseInt(params.round as string, 10) : 1;
   const config: GameConfig | null = useMemo(
     () => (configParam ? JSON.parse(configParam) : null),
     [configParam]
@@ -121,6 +123,7 @@ export default function GameplayScreen() {
   const [hintError, setHintError] = useState(false);
   const hintAbortControllerRef = useRef<AbortController | null>(null);
   const hintPollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [currentRound, setCurrentRound] = useState(incomingRound);
 
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -134,11 +137,25 @@ export default function GameplayScreen() {
 
   useEffect(() => {
     if (!config) return;
-    const initialTeams: Team[] = config.teams.map(t => ({ ...t, score: 0 }));
+    const initialTeams: Team[] = config.teams.map(t => ({
+      id: t.id,
+      name: t.name,
+      score: t.score ?? 0,
+    }));
     setTeams(initialTeams);
     setTimerSeconds(config.timerSeconds);
-    setMatchState(getInitialMatchState(config.teams));
-  }, [config]);
+    const scores: Record<number, number> = {};
+    config.teams.forEach(t => { scores[t.id] = t.score ?? 0; });
+    setMatchState({
+      currentTeamIndex: 0,
+      currentRound: incomingRound,
+      currentPhase: 'pick',
+      selectedWord: null,
+      usedWords: new Set(),
+      scores,
+      words: [],
+    });
+  }, [config, incomingRound]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -735,8 +752,9 @@ export default function GameplayScreen() {
           )}
 
           <TouchableOpacity
-            style={styles.gotItButton}
+            style={[styles.gotItButton, (gotItFeedback || timesUpFeedback) && styles.gotItButtonDisabled]}
             onPress={handleGotIt}
+            disabled={gotItFeedback || timesUpFeedback}
             activeOpacity={0.8}
           >
             <Text style={styles.gotItButtonText}>Got It</Text>
@@ -819,8 +837,6 @@ export default function GameplayScreen() {
     </SafeAreaView>
   );
 }
-
-import { Modal } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -1123,6 +1139,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  gotItButtonDisabled: {
+    backgroundColor: '#CCCCCC',
   },
   gotItButtonText: {
     fontSize: 20,
