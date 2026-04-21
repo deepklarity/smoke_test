@@ -4,15 +4,17 @@ import { colors } from './theme';
 type PrimaryButtonProps = {
   title: string;
   onPress: () => void;
+  icon?: string;
 };
 
-export function PrimaryButton({ title, onPress }: PrimaryButtonProps) {
+export function PrimaryButton({ title, onPress, icon }: PrimaryButtonProps) {
   return (
     <TouchableOpacity
       style={styles.primaryButton}
       onPress={onPress}
       activeOpacity={0.8}
     >
+      {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
       <Text style={styles.primaryButtonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -31,7 +33,7 @@ export function SecondaryButton({ label, icon, onPress }: SecondaryButtonProps) 
       onPress={onPress}
       activeOpacity={0.8}
     >
-      {icon && <Text style={styles.icon}>{icon}</Text>}
+      {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
       <Text style={styles.secondaryButtonText}>{label}</Text>
     </TouchableOpacity>
   );
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   } as TextStyle,
-  icon: {
+  buttonIcon: {
     fontSize: 16,
     marginRight: 8,
   } as TextStyle,
