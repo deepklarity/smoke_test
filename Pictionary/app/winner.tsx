@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { colors } from '../utils/theme';
-import { resetUsedWords } from '../utils/words';
+import { resetMatchState } from '../utils/hints';
 
 type TeamColor = 'red' | 'orange' | 'purple' | 'green';
 
@@ -113,6 +113,7 @@ export default function WinnerScreen() {
   const MEDAL_EMOJI: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' };
 
   const handleRematch = () => {
+    resetMatchState();
     const rematchConfig: GameConfig = {
       ...config,
       teams: config.teams.map(t => ({ ...t, score: 0 })),
@@ -124,7 +125,7 @@ export default function WinnerScreen() {
   };
 
   const handleHome = () => {
-    resetUsedWords();
+    resetMatchState();
     router.replace('/');
   };
 
