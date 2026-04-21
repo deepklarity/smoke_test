@@ -1,4 +1,5 @@
 export type Category = 'Animals' | 'Festivals' | 'Food' | 'Sports' | 'Vehicles' | 'Travel' | 'Movies' | 'Drinks' | 'Flowers' | 'Colors';
+export type CategoryInput = Category | 'Random';
 export type Difficulty = 'Easy' | 'Medium' | 'Hard';
 export type DifficultyWithMix = Difficulty | 'Mix';
 
@@ -387,7 +388,7 @@ function getCategoryForRandom(lastCategory: Category | null): Category {
   return available[randomIndex];
 }
 
-export function getRandomWord(category: Category, difficulty: DifficultyWithMix): string | null {
+export function getRandomWord(category: CategoryInput, difficulty: DifficultyWithMix): string | null {
   if (category === 'Random') {
     const actualCategory = getCategoryForRandom(lastPickedCategory);
     lastPickedCategory = actualCategory;
@@ -407,7 +408,7 @@ export function getRandomWord(category: Category, difficulty: DifficultyWithMix)
   return word;
 }
 
-export function getRandomWords(category: Category, difficulty: Difficulty, count: number = 8): string[] {
+export function getRandomWords(category: CategoryInput, difficulty: DifficultyWithMix, count: number = 8): string[] {
   const words: string[] = [];
   let maxAttempts = 10;
 
