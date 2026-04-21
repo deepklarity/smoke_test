@@ -105,17 +105,19 @@ function CardItem({ item, onClose, onStartGame }: CardItemProps) {
 
       <Text style={styles.stepLabel}>{item.step}</Text>
 
-      <Text style={styles.cardIcon}>{item.icon}</Text>
+      <View style={styles.cardContentWrapper}>
+        <Text style={styles.cardIcon}>{item.icon}</Text>
 
-      <Text style={[styles.cardTitle, { color: item.titleColor }]}>{item.title}</Text>
+        <Text style={[styles.cardTitle, { color: item.titleColor }]}>{item.title}</Text>
 
-      {item.id === 7 ? (
-        <View style={styles.startButtonContainer}>
-          <PrimaryButton title="Start Game" onPress={onStartGame} />
-        </View>
-      ) : (
-        <Text style={styles.cardDescription}>{item.description}</Text>
-      )}
+        {item.id === 7 ? (
+          <View style={styles.startButtonContainer}>
+            <PrimaryButton title="Start Game" onPress={onStartGame} />
+          </View>
+        ) : (
+          <Text style={styles.cardDescription}>{item.description}</Text>
+        )}
+      </View>
     </View>
   );
 }
@@ -275,9 +277,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#888',
   },
+  cardContentWrapper: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   cardIcon: {
     fontSize: 72,
-    marginTop: 40,
     marginBottom: 20,
   },
   cardTitle: {

@@ -342,7 +342,20 @@ export default function GameplayScreen() {
   };
 
   const handleQuitConfirm = () => {
-    router.replace('/winner');
+    if (!matchState || !config) {
+      router.replace('/');
+      return;
+    }
+    const scores = matchState.scores;
+    router.replace({
+      pathname: '/winner',
+      params: {
+        config: JSON.stringify({
+          ...config,
+          teams: teams.map(t => ({ id: t.id, name: t.name, score: scores[t.id] || 0 })),
+        }),
+      },
+    });
   };
 
   const handleQuitCancel = () => {
