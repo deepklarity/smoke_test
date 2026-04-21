@@ -13,8 +13,9 @@ import { colors } from './theme';
 import { PrimaryButton } from './components';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const CARD_MARGIN = 20;
-const CARD_WIDTH = SCREEN_WIDTH - CARD_MARGIN * 2;
+const HORIZONTAL_MARGIN = 32;
+const CARD_WIDTH = SCREEN_WIDTH - HORIZONTAL_MARGIN * 2;
+const CARD_HEIGHT = 320;
 
 const cardData = [
   {
@@ -168,7 +169,7 @@ export function HowToPlayModal({ visible, onClose }: HowToPlayModalProps) {
             )}
             keyExtractor={(item) => item.id.toString()}
             horizontal
-            pagingEnabled
+            pagingEnabled={false}
             showsHorizontalScrollIndicator={false}
             onScroll={handleScroll}
             scrollEventThrottle={16}
@@ -239,12 +240,17 @@ const styles = StyleSheet.create({
   },
   card: {
     width: CARD_WIDTH,
-    marginHorizontal: CARD_MARGIN,
+    height: CARD_HEIGHT,
+    marginHorizontal: HORIZONTAL_MARGIN,
     borderRadius: 20,
     padding: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 400,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
   },
   closeButton: {
     position: 'absolute',

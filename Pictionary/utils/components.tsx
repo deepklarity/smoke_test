@@ -1,4 +1,5 @@
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ShadowStyleIOS } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, ShadowStyleIOS, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from './theme';
 
 type PrimaryButtonProps = {
@@ -14,8 +15,10 @@ export function PrimaryButton({ title, onPress, icon }: PrimaryButtonProps) {
       onPress={onPress}
       activeOpacity={0.8}
     >
-      {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
-      <Text style={styles.primaryButtonText}>{title}</Text>
+      <View style={styles.buttonRow}>
+        {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
+        <Text style={styles.primaryButtonText}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -33,8 +36,10 @@ export function SecondaryButton({ label, icon, onPress }: SecondaryButtonProps) 
       onPress={onPress}
       activeOpacity={0.8}
     >
-      {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
-      <Text style={styles.secondaryButtonText}>{label}</Text>
+      <View style={styles.buttonRow}>
+        {icon && <Text style={styles.buttonIcon}>{icon}</Text>}
+        <Text style={styles.secondaryButtonText}>{label}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -49,8 +54,9 @@ export function BackArrow({ onPress }: BackArrowProps) {
       style={styles.backArrow}
       onPress={onPress}
       activeOpacity={0.7}
+      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
     >
-      <Text style={styles.backArrowText}>{'<'}</Text>
+      <Ionicons name="arrow-back" size={26} color={colors.text} />
     </TouchableOpacity>
   );
 }
@@ -100,12 +106,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 8,
   } as TextStyle,
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  } as ViewStyle,
   backArrow: {
     padding: 8,
   } as ViewStyle,
-  backArrowText: {
-    fontSize: 24,
-    color: colors.text,
-    fontWeight: 'bold',
-  } as TextStyle,
 });
