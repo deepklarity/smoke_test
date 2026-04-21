@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -63,17 +63,20 @@ interface RankedTeam extends Team {
   teamColor: TeamColor;
 }
 
-function computeRankings(teams: Team[]): RankedTeam[] {
+function computeRankings(teams: Team[], originalTeamOrder: { id: number }[]): RankedTeam[] {
   const sorted = [...teams].sort((a, b) => b.score - a.score);
   const ranked: RankedTeam[] = [];
   let currentRank = 1;
   for (let i = 0; i < sorted.length; i++) {
+    const originalIndex = originalTeamOrder.findIndex(t => t.id === sorted[i].id);
     if (i > 0 && sorted[i].score === sorted[i - 1].score) {
-      ranked.push({ ...sorted[i], rank: ranked[i - 1].rank, teamColor: getTeamColor(i) });
+      ranked.push({ ...sorted[i], rank: ranked[i - 1].rank, teamColor: getTeamColor(originalIndex) });
     } else {
-      ranked.push({ ...sorted[i], rank: currentRank, teamColor: getTeamColor(i) });
+      ranked.push({ ...sorted[i], rank: currentRank, teamColor: getTeamColor(originalIndex) });
     }
-    currentRank++;
+    if (i === 0 || sorted[i].score !== sorted[i - 1].score) {
+      currentRank++;
+    }
   }
   return ranked;
 }
@@ -83,7 +86,10 @@ export default function RoundCompleteScreen() {
   const configStr = params.config as string;
   const incomingRound = params.round ? parseInt(params.round as string, 10) : 1;
 
-  const config: GameConfig = configStr ? JSON.parse(configStr) : null;
+  const config: GameConfig | null = useMemo(
+    () => (configStr ? JSON.parse(configStr) : null),
+    [configStr]
+  );
   const [currentRound, setCurrentRound] = useState(incomingRound);
   const [showPauseOverlay, setShowPauseOverlay] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -93,8 +99,10 @@ export default function RoundCompleteScreen() {
   const [tempTimerSeconds, setTempTimerSeconds] = useState(config?.timerSeconds ?? 60);
   const [tempHintsEnabled, setTempHintsEnabled] = useState(config?.hintsEnabled ?? true);
   const [winningScoreOverride, setWinningScoreOverride] = useState<number | null>(null);
+  const [liveConfig, setLiveConfig] = useState<GameConfig | null>(null);
 
-  const effectiveWinningScore = winningScoreOverride ?? config?.winningScore ?? 10;
+  const effectiveConfig: GameConfig | null = liveConfig ?? config;
+  const effectiveWinningScore = winningScoreOverride ?? effectiveConfig?.winningScore ?? 10;
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -108,21 +116,21 @@ export default function RoundCompleteScreen() {
   }, []);
 
   useEffect(() => {
-    if (!config) return;
-    const winnerCount = config.teams.filter(t => t.score >= effectiveWinningScore).length;
+    if (!effectiveConfig || showRulesModal) return;
+    const winnerCount = effectiveConfig.teams.filter(t => t.score >= effectiveWinningScore).length;
     if (winnerCount === 1) {
       router.replace({
         pathname: '/winner',
         params: {
-          config: JSON.stringify(config),
+          config: JSON.stringify(effectiveConfig),
           rounds: currentRound.toString(),
           quit: 'false',
         },
       });
     }
-  }, [config, effectiveWinningScore]);
+  }, [effectiveConfig, effectiveWinningScore, currentRound, showRulesModal]);
 
-  if (!config) {
+  if (!effectiveConfig) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
@@ -135,7 +143,7 @@ export default function RoundCompleteScreen() {
     );
   }
 
-  const rankedTeams = computeRankings(config.teams);
+  const rankedTeams = computeRankings(effectiveConfig.teams, effectiveConfig.teams);
   const topScore = rankedTeams.length > 0 ? rankedTeams[0].score : 0;
   const tiedForFirst = rankedTeams.filter(t => t.score === topScore);
   const winningScoreThreshold = effectiveWinningScore;
@@ -160,10 +168,15 @@ export default function RoundCompleteScreen() {
     if (showTieBreaker) {
       setWinningScoreOverride(prev => (prev ?? effectiveWinningScore) + 1);
     }
+    const finalWinningScore = winningScoreOverride ?? effectiveWinningScore;
+    const nextConfig: GameConfig = {
+      ...effectiveConfig,
+      winningScore: finalWinningScore,
+    };
     router.replace({
       pathname: '/gameplay',
       params: {
-        config: JSON.stringify(config),
+        config: JSON.stringify(nextConfig),
         round: (currentRound + 1).toString(),
       },
     });
@@ -171,27 +184,27 @@ export default function RoundCompleteScreen() {
 
   const handleChangeRulesOpen = () => {
     setTempWinningScore(effectiveWinningScore);
-    setTempDifficulty(config.difficulty);
-    setTempTimerEnabled(config.timerEnabled);
-    setTempTimerSeconds(config.timerSeconds);
-    setTempHintsEnabled(config.hintsEnabled);
+    setTempDifficulty(effectiveConfig.difficulty);
+    setTempTimerEnabled(effectiveConfig.timerEnabled);
+    setTempTimerSeconds(effectiveConfig.timerSeconds);
+    setTempHintsEnabled(effectiveConfig.hintsEnabled);
     setShowRulesModal(true);
   };
 
   const handleChangeRulesConfirm = () => {
     const newWinningScore = Math.max(
       effectiveWinningScore,
-      Math.max(...config.teams.map(t => t.score)) + 1
+      Math.max(...effectiveConfig.teams.map(t => t.score)) + 1
     );
     const updatedConfig: GameConfig = {
-      ...config,
+      ...effectiveConfig,
       winningScore: tempWinningScore < newWinningScore ? newWinningScore : tempWinningScore,
       difficulty: tempDifficulty,
       timerEnabled: tempTimerEnabled,
       timerSeconds: tempTimerSeconds,
       hintsEnabled: tempHintsEnabled,
     };
-    Object.assign(config, updatedConfig);
+    setLiveConfig(updatedConfig);
     setWinningScoreOverride(updatedConfig.winningScore > effectiveWinningScore ? updatedConfig.winningScore : null);
     setShowRulesModal(false);
   };
@@ -263,17 +276,17 @@ export default function RoundCompleteScreen() {
           </View>
           <View style={styles.ruleRow}>
             <Text style={styles.ruleLabel}>Difficulty</Text>
-            <Text style={styles.ruleValue}>{config.difficulty}</Text>
+            <Text style={styles.ruleValue}>{effectiveConfig.difficulty}</Text>
           </View>
           <View style={styles.ruleRow}>
             <Text style={styles.ruleLabel}>Timer</Text>
             <Text style={styles.ruleValue}>
-              {config.timerEnabled ? `${config.timerSeconds}s` : 'Off'}
+              {effectiveConfig.timerEnabled ? `${effectiveConfig.timerSeconds}s` : 'Off'}
             </Text>
           </View>
           <View style={styles.ruleRow}>
             <Text style={styles.ruleLabel}>Hints</Text>
-            <Text style={styles.ruleValue}>{config.hintsEnabled ? 'On' : 'Off'}</Text>
+            <Text style={styles.ruleValue}>{effectiveConfig.hintsEnabled ? 'On' : 'Off'}</Text>
           </View>
         </View>
       </ScrollView>

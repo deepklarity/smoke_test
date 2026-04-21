@@ -54,14 +54,19 @@ interface RankedTeam extends Team {
   teamColor: TeamColor;
 }
 
-function computeRankings(teams: Team[]): RankedTeam[] {
+function computeRankings(teams: Team[], originalTeamOrder: { id: number }[]): RankedTeam[] {
   const sorted = [...teams].sort((a, b) => b.score - a.score);
   const ranked: RankedTeam[] = [];
+  let currentRank = 1;
   for (let i = 0; i < sorted.length; i++) {
+    const originalIndex = originalTeamOrder.findIndex(t => t.id === sorted[i].id);
     if (i > 0 && sorted[i].score === sorted[i - 1].score) {
-      ranked.push({ ...sorted[i], rank: ranked[i - 1].rank, teamColor: getTeamColor(i) });
+      ranked.push({ ...sorted[i], rank: ranked[i - 1].rank, teamColor: getTeamColor(originalIndex) });
     } else {
-      ranked.push({ ...sorted[i], rank: i + 1, teamColor: getTeamColor(i) });
+      ranked.push({ ...sorted[i], rank: currentRank, teamColor: getTeamColor(originalIndex) });
+    }
+    if (i === 0 || sorted[i].score !== sorted[i - 1].score) {
+      currentRank++;
     }
   }
   return ranked;
@@ -95,7 +100,7 @@ export default function WinnerScreen() {
     );
   }
 
-  const rankedTeams = computeRankings(config.teams);
+  const rankedTeams = computeRankings(config.teams, config.teams);
   const topScore = rankedTeams.length > 0 ? rankedTeams[0].score : 0;
   const winners = rankedTeams.filter(t => t.score === topScore);
   const isDraw = winners.length > 1;
