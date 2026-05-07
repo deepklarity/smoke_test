@@ -7,31 +7,49 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button class="btn col-span-2 function" onclick="allClear()">AC</button>
-            <button class="btn function" onclick="clearLast()">C</button>
-            <button class="btn operator" onclick="setOperator('/')">/</button>
-            
-            <button class="btn" onclick="appendNumber('7')">7</button>
-            <button class="btn" onclick="appendNumber('8')">8</button>
-            <button class="btn" onclick="appendNumber('9')">9</button>
-            <button class="btn operator" onclick="setOperator('*')">×</button>
-            
-            <button class="btn" onclick="appendNumber('4')">4</button>
-            <button class="btn" onclick="appendNumber('5')">5</button>
-            <button class="btn" onclick="appendNumber('6')">6</button>
-            <button class="btn operator" onclick="setOperator('-')">-</button>
-            
-            <button class="btn" onclick="appendNumber('1')">1</button>
-            <button class="btn" onclick="appendNumber('2')">2</button>
-            <button class="btn" onclick="appendNumber('3')">3</button>
-            <button class="btn operator" onclick="setOperator('+')">+</button>
-            
-            <button class="btn col-span-2" onclick="appendNumber('0')">0</button>
-            <button class="btn" onclick="appendNumber('.')">.</button>
-            <button class="btn operator" onclick="calculate()">=</button>
+    <div class="container">
+        <div class="calculator">
+            <div class="display-container">
+                <div class="memory-indicator" id="memoryIndicator">M</div>
+                <div class="expression" id="expression"></div>
+                <div class="display" id="display">0</div>
+            </div>
+            <div class="buttons">
+                <button class="btn col-span-2 function" onclick="allClear()">AC</button>
+                <button class="btn function" onclick="clearLast()">C</button>
+                <button class="btn operator" onclick="setOperator('/')">/</button>
+                
+                <button class="btn memory" onclick="memoryRecall()" title="Memory Recall">MR</button>
+                <button class="btn memory" onclick="memoryClear()" title="Memory Clear">MC</button>
+                <button class="btn memory" onclick="memoryAdd()" title="Memory Add">M+</button>
+                <button class="btn memory" onclick="memorySubtract()" title="Memory Subtract">M-</button>
+                
+                <button class="btn" onclick="appendNumber('7')">7</button>
+                <button class="btn" onclick="appendNumber('8')">8</button>
+                <button class="btn" onclick="appendNumber('9')">9</button>
+                <button class="btn operator" onclick="setOperator('*')">×</button>
+                
+                <button class="btn" onclick="appendNumber('4')">4</button>
+                <button class="btn" onclick="appendNumber('5')">5</button>
+                <button class="btn" onclick="appendNumber('6')">6</button>
+                <button class="btn operator" onclick="setOperator('-')">-</button>
+                
+                <button class="btn" onclick="appendNumber('1')">1</button>
+                <button class="btn" onclick="appendNumber('2')">2</button>
+                <button class="btn" onclick="appendNumber('3')">3</button>
+                <button class="btn operator" onclick="setOperator('+')">+</button>
+                
+                <button class="btn col-span-2" onclick="appendNumber('0')">0</button>
+                <button class="btn" onclick="appendNumber('.')">.</button>
+                <button class="btn operator" onclick="calculate()">=</button>
+            </div>
+        </div>
+        <div class="history-panel">
+            <div class="history-header">
+                <h3>History</h3>
+                <button class="clear-history-btn" onclick="clearHistory()">Clear</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
         </div>
     </div>
     <script src="script.js"></script>
